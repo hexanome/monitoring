@@ -29,3 +29,17 @@ Realtime monitoring system of a packaging line.
 - Close trap
 - Prompt supervisor (stop/restart)
 - Log event
+
+## Teams
+
+### Windows client
+- @espadrine
+- @jankeromnes (QA)
+
+### VxWorks network
+- @fathic (Project Manager)
+- @alexisjos
+
+### VxWorks devices
+- @davidaparicio
+- @rcatolino
