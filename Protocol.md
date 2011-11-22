@@ -1,29 +1,18 @@
-# Server to Client
-
-## Message
+## Server to Client
 
     [type:char][size:int32][message:buffer(size)]
 
-type:
 - 'i': info
 - 'e': error
 
-# Client to Server
+## Client to Server
 
-## Init
+    [type:char][palettes:int32][boxes:int32][parts:int32][part_type:char]
 
-    [type:char][
-
-type:
-- 'i': init
-
-## Handle errors
+- type: 'i' init
+- part_type:
 
     [type:char][action:char]
 
-type:
-- 'e': error handling
-
-action:
-- 's': stop
-- 'c': continue
+- type: 'e': error handling
+- action: 's': stop, 'c': continue
