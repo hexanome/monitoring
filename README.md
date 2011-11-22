@@ -1,4 +1,4 @@
-Realtime monitoring of a packaging system.
+Realtime monitoring system of a packaging line.
 
 ## Systems
 - Monitoring computer (Windows)
@@ -6,3 +6,8 @@ Realtime monitoring of a packaging system.
 
 ## Network
 - Sockets (TCP/IP)
+
+## Synopsis
+- Parts get measured by Sensor (accepted/refused)
+- Parts are combined into a Package
+- Package is stored in Warehouse
