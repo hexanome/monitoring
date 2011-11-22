@@ -12,6 +12,8 @@
 - type: 'i' init
 - part_type:
 
+---
+
     [type:char][action:char]
 
 - type: 'e': error handling
