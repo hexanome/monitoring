@@ -1,17 +1,50 @@
-/* server.js: run this with Node.js in the publish/ folder to start your server.
- * Copyright © 2011 Jan Keromnes, Thaddee Tyl. All rights reserved.
- * Code covered by the LGPL license. */
+/* server.js: Run this with node to start your server.
+ * Copyright (c) Hexanome H4101 INSA IF.
+ */
+
+// Import modules
+var net = require ('net'),
+    camp = require ('./camp/camp');
 
 
-// Import the Camp
-var camp = require ('./camp/camp.js');
+// Connect to remote monitoring system
+var socket = new net.Socket();
 
-// Options
+// What to do when connected
+socket.on('connect', function() {
+
+  // Listen to incoming data
+  socket.on('data', function(data) {
+    // TODO notify the client
+    console.log('received ' + data);
+  });
+
+  camp.add('init', function(data) {
+    var msg = 'init message'; // TODO
+    socket.write(msg);
+  });
+
+  camp.add('stop', function(data) {
+    var msg = 'stop message'; // TODO
+    socket.write(msg);
+  });
+
+  camp.add('continue', function(data) {
+    var msg = 'continue message'; // TODO
+    socket.write(msg);
+  });
+
+});
+
+// Connect to remote system
+socket.connect(1337); // TODO
+
+// Web server options
 var options = {
-  port: +process.argv[2],
-  secure: process.argv[3],
-  debug: +process.argv[4]
+  port: 80,
+  secure: 'no',
+  debug: 10
 }
 
-// Let's rock'n'roll!
+// Start web server
 camp.start(options);
