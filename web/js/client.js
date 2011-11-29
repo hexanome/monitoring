@@ -11,6 +11,6 @@ function makeop(action) {
 }
 
 addEventListener('load', function createactions() {
-  ['stop', 'go', 'order'].forEach(function(act) {makeop(act);});
+  ['stop', 'go', 'init'].forEach(function(act) {makeop(act);});
 }, false);
 
