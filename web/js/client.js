@@ -5,12 +5,8 @@
 function makeop(action) {
   Scout('#' + action).on(action, function(query) {
     query.action = action;
-    query.resp = function(resp) {
-      console.log(action + '-ed');
-    };
-    query.error = function(err) {
-      console.error(err.message);
-    };
+    query.resp = function(resp) { console.log(action + '-ed'); };
+    query.error = function(err) { console.error(err.message); };
   });
 }
 
