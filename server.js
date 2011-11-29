@@ -19,7 +19,7 @@ socket.on('connect', function() {
     console.log('received ' + data);
   });
 
-  camp.add('order', function(data) {
+  camp.add('init', function(data) {
     var msg = '';
     socket.write(msg);
   });

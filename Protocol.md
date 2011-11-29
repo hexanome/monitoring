@@ -9,7 +9,7 @@
 
     [type:char][part_type:char][palettes:int32][boxes:int32][parts:int32]
 
-- type: 'o' order
+- type: 'i' init
 - part_type: 0, 1, 2
 - palettes:
 - boxes:
