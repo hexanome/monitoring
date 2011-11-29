@@ -5,6 +5,7 @@
 function makeop(action) {
   Scout('#' + action).on('click', function(query) {
     query.action = action;
+    query.method = 'GET';
     query.resp = function(resp) { console.log(action + '-ed'); };
     query.error = function(err) { console.error(err); };
   });

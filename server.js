@@ -36,11 +36,12 @@ socket.on('connect', function() {
     var msg = 'go message'; // TODO
     socket.write(msg);
   });
-
 });
 
 // Connect to remote system
 socket.connect(1337); // TODO
+
+console.log('camp contains', camp.Server.Actions);
 
 // Web server options
 var options = {
