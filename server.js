@@ -19,8 +19,8 @@ socket.on('connect', function() {
     console.log('received ' + data);
   });
 
-  camp.add('init', function(data) {
-    var msg = 'init message'; // TODO
+  camp.add('order', function(data) {
+    var msg = 'order message'; // TODO
     socket.write(msg);
   });
 
