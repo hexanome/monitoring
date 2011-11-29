@@ -13,6 +13,8 @@ var socket = new net.Socket();
 // What to do when connected
 socket.on('connect', function() {
 
+  console.log('socket connected');
+
   // Listen to incoming data
   socket.on('data', function(data) {
     // TODO notify the client
@@ -25,6 +27,7 @@ socket.on('connect', function() {
   });
 
   camp.add('stop', function(data) {
+    console.log('STOP');
     var msg = 'stop message'; // TODO
     socket.write(msg);
   });
