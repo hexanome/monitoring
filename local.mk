@@ -3,5 +3,5 @@
 default: sim debug
 
 sim:
-	@echo "VxWorks sim"
+	@echo "vxworks sim"
 	@node vxworks.js &

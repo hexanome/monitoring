@@ -36,10 +36,10 @@ Realtime monitoring system of a packaging line.
 - @espadrine
 - @jankeromnes (QA)
 
-### VxWorks network
-- @fathic (Project Manager)
-- @alexisjos
-
 ### VxWorks devices
 - @davidaparicio
 - @rcatolino
+
+### VxWorks network
+- @fathic (Project Manager)
+- @alexisjos
