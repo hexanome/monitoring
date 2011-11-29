@@ -37,13 +37,13 @@ socket.on('connect', function() {
 });
 
 // Connect to remote system
-socket.connect(1337); // TODO
+//socket.connect(1337); // TODO
 
 // Web server options
 var options = {
-  port: 80,
-  secure: 'no',
-  debug: 10
+  port: +process.argv[2],
+  secure: process.argv[3],
+  debug: +process.argv[4]
 }
 
 // Start web server
