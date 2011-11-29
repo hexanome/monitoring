@@ -20,7 +20,7 @@ socket.on('connect', function() {
   });
 
   camp.add('order', function(data) {
-    var msg = 'order message'; // TODO
+    var msg = '';
     socket.write(msg);
   });
 
@@ -37,7 +37,7 @@ socket.on('connect', function() {
 });
 
 // Connect to remote system
-//socket.connect(1337); // TODO
+socket.connect(1337); // TODO
 
 // Web server options
 var options = {

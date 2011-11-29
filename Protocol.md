@@ -7,10 +7,13 @@
 
 ## Client to Server
 
-    [type:char][palettes:int32][boxes:int32][parts:int32][part_type:char]
+    [type:char][part_type:char][palettes:int32][boxes:int32][parts:int32]
 
 - type: 'o' order
 - part_type: 0, 1, 2
+- palettes:
+- boxes:
+- parts:
 
 ---
 
