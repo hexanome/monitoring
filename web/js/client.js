@@ -5,5 +5,5 @@
 function stop() {
 }
 
-function restart() {
+function go() {
 }

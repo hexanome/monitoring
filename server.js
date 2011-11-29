@@ -29,8 +29,8 @@ socket.on('connect', function() {
     socket.write(msg);
   });
 
-  camp.add('restart', function(data) {
-    var msg = 'restart message'; // TODO
+  camp.add('go', function(data) {
+    var msg = 'go message'; // TODO
     socket.write(msg);
   });
 
