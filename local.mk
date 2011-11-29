@@ -3,5 +3,5 @@
 default: sim debug
 
 sim:
-	@echo "simulating monitoring server"
-	@node serversim.js &
+	@echo "VxWorks sim"
+	@node vxworks.js &
