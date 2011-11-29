@@ -2,7 +2,7 @@
  * Copyright © Hexanome H4101 INSA IF.
  */
 
-function makeexec(action) {
+function makeop(action) {
   Scout('#' + action).on(action, function(query) {
     query.action = action;
     query.resp = function(resp) {
@@ -14,9 +14,7 @@ function makeexec(action) {
   });
 }
 
-addEventListener('load', function() {
-  makeexec('stop');
-  makeexec('go');
-  makeexec('order');
+addEventListener('load', function createactions() {
+  ['stop', 'go', 'order'].forEach(function(act) {makeop(act);});
 }, false);
 
