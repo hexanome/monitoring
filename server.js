@@ -1,5 +1,5 @@
 /* server.js: Run this with node to start your server.
- * Copyright (c) Hexanome H4101 INSA IF.
+ * Copyright © Hexanome H4101 INSA IF.
  */
 
 // Import modules
