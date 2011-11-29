@@ -17,6 +17,6 @@ function makeexec(action) {
 addEventListener('load', function() {
   makeexec('stop');
   makeexec('go');
-  makeexec('init');
+  makeexec('order');
 }, false);
 

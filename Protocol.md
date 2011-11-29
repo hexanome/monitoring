@@ -9,12 +9,11 @@
 
     [type:char][palettes:int32][boxes:int32][parts:int32][part_type:char]
 
-- type: 'i' init
-- part_type:
+- type: 'o' order
+- part_type: 0, 1, 2
 
 ---
 
-    [type:char][action:char]
+    [type:char]
 
-- type: 'e': error handling
-- action: 's': stop, 'c': continue
+- type: 's': stop, 'g': go
