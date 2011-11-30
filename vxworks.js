@@ -4,4 +4,4 @@ net.Server(function(socket) {
   socket.on('data',function(data){
     console.log(data+'');
   });
-}).listen(1337);
+}).listen(1337);// 5001 | 3737 
