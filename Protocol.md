@@ -7,16 +7,21 @@
 
 ## Client to Server
 
-    [type:char][part_type:char][palettes:int32][boxes:int32][parts:int32]
-
-- type: 'i' init
-- part_type: 0, 1, 2
-- palettes:
-- boxes:
-- parts:
-
----
-
     [type:char]
 
-- type: 's': stop, 'g': go
+- type: 'i' init
+
+    [type:char][numCommande:uint32][part_type:char][part_number:uint32][part_number_dif:int16]
+
+- type: 'c' command
+- numCommande: numéro de la commande
+- part_type: 1, 2 (ou autre)
+- part_number: nombre de pièce de type part_type
+- part_number_dif: nombre de pièces différntes dans la commande
+
+    [type:char][answer:char]
+
+- type: 'a' answer
+- answer : 'c' continue, 's' stop
+
+---
