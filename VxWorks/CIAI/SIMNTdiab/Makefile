@@ -32,7 +32,7 @@ else
 MODE_DIR := NonDebug
 endif
 OBJ_DIR := .
-WS_ROOT_DIR := Y:/CIAI
+WS_ROOT_DIR := Y:/monitoring/VxWorks
 PRJ_ROOT_DIR := $(WS_ROOT_DIR)/CIAI
 
 

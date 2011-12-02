@@ -1,4 +1,5 @@
-CIAI_partialImage/Debug/Objects/CIAI/write.o: Y:/CIAI/CIAI/write.c \
+CIAI_partialImage/Debug/Objects/CIAI/write.o: \
+  Y:/monitoring/VxWorks/CIAI/write.c \
   C:/WindRiver/vxworks-6.7/target/h\stdio.h \
   C:/WindRiver/vxworks-6.7/target/h\types/vxANSI.h \
   C:/WindRiver/vxworks-6.7/target/h\types/vxCpu.h \
