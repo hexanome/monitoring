@@ -38,7 +38,19 @@ function craftanswer(choice) {
 //     numCommand:Number
 //     part_type:String (of one char)
 //     part_number:Number
-function craftcommand(commands) {
+//
+// `send` :: function (buffer) { do something with it }
+function craftcommand(commands, send) {
+  var len = commands.length;
+  for (var i = 0; len > i; i++) {
+    var buf = new Buffer((8+32+8+32+16)/8);
+    buf[0] = cca('c');
+    buf.writeUInt32BE(commands[i].numCommand, 1);
+    buf[(8+32)/8] = cca(commands[i].part_type);
+    buf.writeUInt32BE(commands[i].part_number, (8+32+8)/8);
+    buf.writeUInt16BE(len, (8+32+8+32)/8);
+    send(buf);
+  }
 }
 
 
