@@ -1,0 +1,100 @@
+!SESSION 2011-12-02 09:28:57.938 -----------------------------------------------
+eclipse.buildId=20081218-0628
+java.version=1.5.0_11
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_FR
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.windriver.ide.common.ui 1 0 2011-12-02 09:29:39.955
+!MESSAGE The capability VxWorks 5.5.x Development was disabled due to errors in the underlying platform. Once the platform is registered properly to install.properties Workbench support will be reenabled automatically. 
+
+!ENTRY org.eclipse.osgi 2 0 2011-12-02 09:29:46.861
+!MESSAGE While loading class "biz.junginger.newsfeed.FeedProcessorQueue$ProcessorThread", thread "Thread[RSS View Thread,6,main]" timed out waiting (5000ms) for thread "Thread[main,6,main]" to finish starting bundle "update@../../tools/eclipse/plugins/biz.junginger.rss.eclipse.RssPlugin_1.5.0.jar [149]". To avoid deadlock, thread "Thread[RSS View Thread,6,main]" is proceeding but "biz.junginger.newsfeed.FeedProcessorQueue$ProcessorThread" may not be fully initialized.
+!STACK 0
+org.osgi.framework.BundleException: State change in progress for bundle "update@../../tools/eclipse/plugins/biz.junginger.rss.eclipse.RssPlugin_1.5.0.jar" by thread "main".
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.beginStateChange(AbstractBundle.java:1144)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.start(AbstractBundle.java:263)
+	at org.eclipse.osgi.framework.util.SecureAction.start(SecureAction.java:400)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseLazyStarter.postFindLocalClass(EclipseLazyStarter.java:111)
+	at org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass(ClasspathManager.java:427)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLocalClass(DefaultClassLoader.java:193)
+	at org.eclipse.osgi.framework.internal.core.BundleLoader.findLocalClass(BundleLoader.java:368)
+	at org.eclipse.osgi.framework.internal.core.BundleLoader.findClassInternal(BundleLoader.java:444)
+	at org.eclipse.osgi.framework.internal.core.BundleLoader.findClass(BundleLoader.java:397)
+	at org.eclipse.osgi.framework.internal.core.BundleLoader.findClass(BundleLoader.java:385)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:87)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+	at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+	at biz.junginger.newsfeed.FeedProcessorQueue.submitWork(FeedProcessorQueue.java:68)
+	at biz.junginger.newsfeed.FeedReaderThread.checkSubmitWork(FeedReaderThread.java:116)
+	at biz.junginger.newsfeed.FeedReaderThread.run(FeedReaderThread.java:90)
+Caused by: org.eclipse.osgi.framework.internal.core.AbstractBundle$BundleStatusException
+	... 16 more
+Root exception:
+org.eclipse.osgi.framework.internal.core.AbstractBundle$BundleStatusException
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.beginStateChange(AbstractBundle.java:1144)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.start(AbstractBundle.java:263)
+	at org.eclipse.osgi.framework.util.SecureAction.start(SecureAction.java:400)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseLazyStarter.postFindLocalClass(EclipseLazyStarter.java:111)
+	at org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass(ClasspathManager.java:427)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLocalClass(DefaultClassLoader.java:193)
+	at org.eclipse.osgi.framework.internal.core.BundleLoader.findLocalClass(BundleLoader.java:368)
+	at org.eclipse.osgi.framework.internal.core.BundleLoader.findClassInternal(BundleLoader.java:444)
+	at org.eclipse.osgi.framework.internal.core.BundleLoader.findClass(BundleLoader.java:397)
+	at org.eclipse.osgi.framework.internal.core.BundleLoader.findClass(BundleLoader.java:385)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:87)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+	at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+	at biz.junginger.newsfeed.FeedProcessorQueue.submitWork(FeedProcessorQueue.java:68)
+	at biz.junginger.newsfeed.FeedReaderThread.checkSubmitWork(FeedReaderThread.java:116)
+	at biz.junginger.newsfeed.FeedReaderThread.run(FeedReaderThread.java:90)
+
+!ENTRY biz.junginger.rss.eclipse.RssPlugin 1 1 2011-12-02 09:29:46.861
+!MESSAGE RSS View Controller started in 78ms
+
+!ENTRY com.windriver.ide.target 1 0 2011-12-02 09:29:49.799
+!MESSAGE C:\WindRiver\workbench-3.1\dfw\\x86-win32\bin\dfwserver.exe  -protocol mi -io sockets -useregistry -session dfw-wb31-ardjossinet -registryhost localhost
+
+!ENTRY com.windriver.ide.target 1 0 2011-12-02 09:29:50.814
+!MESSAGE Connected to dfwserver at 127.0.0.1, 127.0.0.1:4561, PID=3192, Session="dfw-wb31-ardjossinet"
+
+!ENTRY org.eclipse.cdt.core 1 0 2011-12-02 09:30:19.956
+!MESSAGE Indexed 'CIAI' (1 sources, 10 headers) in 1,27 sec: 20 declarations; 36 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0,00%)
+
+!ENTRY org.eclipse.help 4 0 2011-12-02 09:30:27.690
+!MESSAGE Error reading context-sensitive help file /"com.windriver.ide.doc.platform_general_vxworks/vxworks_component_reference/html/contexts.xml" (skipping file)
+!STACK 0
+java.io.FileNotFoundException
+	at org.eclipse.help.internal.context.ContextFileProvider.loadContexts(ContextFileProvider.java:235)
+	at org.eclipse.help.internal.context.ContextFileProvider.getContexts(ContextFileProvider.java:181)
+	at org.eclipse.help.internal.context.ContextFileProvider.getPluginContexts(ContextFileProvider.java:158)
+	at org.eclipse.help.internal.context.ContextFileProvider.getContext(ContextFileProvider.java:83)
+	at org.eclipse.help.internal.context.ContextManager.getContext(ContextManager.java:85)
+	at org.eclipse.help.HelpSystem.getContext(HelpSystem.java:49)
+	at com.windriver.ide.internal.apidoc.WRAPIHelpProvider.getFunctionInfo(WRAPIHelpProvider.java:110)
+	at org.eclipse.cdt.internal.ui.text.CHelpSettings.getFunctionInfo(CHelpSettings.java:121)
+	at org.eclipse.cdt.internal.ui.CHelpProviderManager.getFunctionInfo(CHelpProviderManager.java:163)
+	at org.eclipse.cdt.internal.ui.text.c.hover.CDocHover.getHoverInfo(CDocHover.java:77)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AbstractCEditorTextHover.getHoverInfo2(AbstractCEditorTextHover.java:83)
+	at org.eclipse.cdt.internal.ui.text.c.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:131)
+	at org.eclipse.cdt.internal.ui.text.c.hover.CEditorTextHoverProxy.getHoverInfo2(CEditorTextHoverProxy.java:86)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+
+!ENTRY org.eclipse.help 4 0 2011-12-02 09:30:27.706
+!MESSAGE Error reading context-sensitive help file /"com.windriver.ide.doc.platform_general_vxworks/networking_component_reference/html/contexts.xml" (skipping file)
+!STACK 0
+java.io.FileNotFoundException
+	at org.eclipse.help.internal.context.ContextFileProvider.loadContexts(ContextFileProvider.java:235)
+	at org.eclipse.help.internal.context.ContextFileProvider.getContexts(ContextFileProvider.java:181)
+	at org.eclipse.help.internal.context.ContextFileProvider.getPluginContexts(ContextFileProvider.java:158)
+	at org.eclipse.help.internal.context.ContextFileProvider.getContext(ContextFileProvider.java:83)
+	at org.eclipse.help.internal.context.ContextManager.getContext(ContextManager.java:85)
+	at org.eclipse.help.HelpSystem.getContext(HelpSystem.java:49)
+	at com.windriver.ide.internal.apidoc.WRAPIHelpProvider.getFunctionInfo(WRAPIHelpProvider.java:110)
+	at org.eclipse.cdt.internal.ui.text.CHelpSettings.getFunctionInfo(CHelpSettings.java:121)
+	at org.eclipse.cdt.internal.ui.CHelpProviderManager.getFunctionInfo(CHelpProviderManager.java:163)
+	at org.eclipse.cdt.internal.ui.text.c.hover.CDocHover.getHoverInfo(CDocHover.java:77)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AbstractCEditorTextHover.getHoverInfo2(AbstractCEditorTextHover.java:83)
+	at org.eclipse.cdt.internal.ui.text.c.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:131)
+	at org.eclipse.cdt.internal.ui.text.c.hover.CEditorTextHoverProxy.getHoverInfo2(CEditorTextHoverProxy.java:86)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
