@@ -7,21 +7,24 @@
 
 ## Client to Server
 
-    [type:char]
+    [type:char][more data according to type…]
 
-- type: 'i' init
+### type: 'i' init
+
+[Self-descriptive]
+
+### type: 'c' command
 
     [type:char][numCommande:uint32][part_type:char][part_number:uint32][part_number_dif:int16]
 
-- type: 'c' command
 - numCommande: numéro de la commande
-- part_type: 1, 2 (ou autre)
-- part_number: nombre de pièce de type part_type
-- part_number_dif: nombre de pièces différntes dans la commande
+- part\_type: 1, 2 (ou autre)
+- part\_number: nombre de pièce de type part\_type
+- part\_number\_dif: nombre de pièces différntes dans la commande
+
+### type: 'a' answer
 
     [type:char][answer:char]
 
-- type: 'a' answer
-- answer : 'c' continue, 's' stop
+- answer: 'c' continue, 's' stop
 
----
