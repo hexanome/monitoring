@@ -8,8 +8,9 @@ void startwritefile()
 	// Message d'erreur
 	char *erreur;
 	
+	char buffer[] = { 'x' , 'y' , 'z' };
+		
 	FILE * mes ;
-	
 	mes = fopen ("messages","newmessages");
 	
 	// Boucle infini de la tache
@@ -17,8 +18,9 @@ void startwritefile()
 	{
 		//On attend un message de la boite aux letres "messages"
 		msgQReceive(msgQId ,erreur, sizeof (&erreur), WAIT_FOREVER);
-		
+			
 		// On rajoute le message d'erreur dans le fichier "messages"
-		
-	}	
+		fwrite (buffer , 1 , sizeof(buffer) , mes );	
+	}
+	fclose (mes);
 }
