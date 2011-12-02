@@ -32,8 +32,8 @@ else
 MODE_DIR := NonDebug
 endif
 OBJ_DIR := .
-WS_ROOT_DIR := Y:/monitoring/VxWorks
-PRJ_ROOT_DIR := $(WS_ROOT_DIR)/CIAI
+PRJ_ROOT_DIR := C:/Users/fathi/Desktop/monitoring/VxWorks/CIAI
+WS_ROOT_DIR := C:/Users/fathi/Desktop/monitoring/VxWorks
 
 
 
@@ -165,11 +165,16 @@ CIAI_partialImage/$(MODE_DIR)/% : LIBPATH =
 CIAI_partialImage/$(MODE_DIR)/% : LIBS = 
 CIAI_partialImage/$(MODE_DIR)/% : OBJ_DIR := CIAI_partialImage/$(MODE_DIR)
 
-CIAI_partialImage/$(MODE_DIR)/Objects/CIAI/write.o : $(PRJ_ROOT_DIR)/write.c
+CIAI_partialImage/$(MODE_DIR)/Objects/CIAI/read.o : C:/Users/fathi/Desktop/monitoring/VxWorks/CIAI/read.c
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)dcc $(DEBUGFLAGS_C-Compiler) $(CC_ARCH_SPEC) -W:c:,-Xclib-optim-off -Xansi -Xlocal-data-area-static-only  -Xforce-declarations   -Xmake-dependency=0xd $(ADDED_CFLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL  -D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\"   $(DEFINES) -o "$@" -c "$<"
 
 
-OBJECTS_CIAI_partialImage = CIAI_partialImage/$(MODE_DIR)/Objects/CIAI/write.o
+CIAI_partialImage/$(MODE_DIR)/Objects/CIAI/write.o : C:/Users/fathi/Desktop/monitoring/VxWorks/CIAI/write.c
+	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)dcc $(DEBUGFLAGS_C-Compiler) $(CC_ARCH_SPEC) -W:c:,-Xclib-optim-off -Xansi -Xlocal-data-area-static-only  -Xforce-declarations   -Xmake-dependency=0xd $(ADDED_CFLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL  -D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\"   $(DEFINES) -o "$@" -c "$<"
+
+
+OBJECTS_CIAI_partialImage = CIAI_partialImage/$(MODE_DIR)/Objects/CIAI/read.o \
+	 CIAI_partialImage/$(MODE_DIR)/Objects/CIAI/write.o
 
 CIAI_partialImage/$(MODE_DIR)/CIAI_partialImage.o : $(OBJECTS_CIAI_partialImage)
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)dld -tX86LH:vxworks67 -X -r5 -f 0x90,1,1  -o "$@" $(OBJECTS_CIAI_partialImage) $(ADDED_OBJECTS) $(IDE_LIBRARIES) $(LIBPATH) $(LIBS) $(ADDED_LIBPATH) $(ADDED_LIBS) && if [ "$(EXPAND_DBG)" = "1" ]; then plink "$@";fi
@@ -181,16 +186,9 @@ _clean :: CIAI_partialImage/$(MODE_DIR)/CIAI_partialImage_clean
 CIAI_partialImage/$(MODE_DIR)/CIAI_partialImage_clean : 
 	$(TRACE_FLAG)if [ -d "CIAI_partialImage" ]; then cd "CIAI_partialImage"; rm -rf $(MODE_DIR); fi
 
-DEP_FILES := CIAI_partialImage/$(MODE_DIR)/Objects/CIAI/write.d
+DEP_FILES := CIAI_partialImage/$(MODE_DIR)/Objects/CIAI/read.d CIAI_partialImage/$(MODE_DIR)/Objects/CIAI/write.d
 -include $(DEP_FILES)
 
-
-WIND_SCOPETOOLS_BASE := $(subst \,/,$(WIND_SCOPETOOLS_BASE))
-
-clean_scopetools :
-	$(TRACE_FLAG)rm -rf $(PRJ_ROOT_DIR)/.coveragescope/db
-
-CLEAN_STEP := clean_scopetools
 
 
 -include $(PRJ_ROOT_DIR)/*.makefile
