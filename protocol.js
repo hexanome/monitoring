@@ -4,12 +4,11 @@
 
 
 function readmessage(buffer) {
-  var msg = {
+  return {
     type: buffer.readUInt8(0).toString(),
     size: +buffer.readInt32(1, true),
     message: buffer.slice((8+32)/8, size).toString()
   };
-  return msg;
 }
 
 
