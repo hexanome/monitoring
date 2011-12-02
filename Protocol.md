@@ -2,6 +2,8 @@
 
     [type:char][size:int32][message:buffer(size)]
 
+The size indicated is that of the message only.
+
 - 'i': info
 - 'e': error
 
@@ -20,7 +22,7 @@
 - numCommande: numéro de la commande
 - part\_type: 1, 2 (ou autre)
 - part\_number: nombre de pièce de type part\_type
-- part\_number\_dif: nombre de pièces différntes dans la commande
+- part\_number\_dif: nombre de pièces différentes dans la commande
 
 ### type: 'a' answer
 
