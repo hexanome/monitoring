@@ -12,7 +12,14 @@ function readmessage(buffer) {
 }
 
 
+function craftinit() {
+  var buf = new Buffer(1);
+  buf[0] = 'i';
+  return buf;
+}
+
 // Exports are here.
 
 exports.readmessage = readmessage;
+exports.craftinit = craftinit;
 
