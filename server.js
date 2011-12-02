@@ -4,7 +4,8 @@
 
 // Import modules
 var net = require ('net'),
-    camp = require ('./camp/camp');
+    camp = require ('./camp/camp'),
+    protocol = require ('./protocol');
 
 
 // Connect to remote monitoring system

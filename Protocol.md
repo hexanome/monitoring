@@ -2,6 +2,8 @@
 
     [type:char][size:int32][message:buffer(size)]
 
+The size indicated is that of the message only.
+
 - 'i': info
 - 'e': error
 
