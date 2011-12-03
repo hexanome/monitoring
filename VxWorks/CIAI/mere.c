@@ -25,6 +25,10 @@ void initialisation()
 
 	/* INITIALISATION DE LA SOCKET */
 	createsocket();
+	
+	/* CREATION DU FICHIER */
+	FILE * message_file;
+        message_file = fopen("messages","w");
 
 	/*Creation des BAL*/
 	mid_boxing_todo   = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
@@ -81,6 +85,7 @@ void initialisation()
 
 void destruction()
 {
+	fclose(message_file);
 	/* TO DO */
 	printf("Fin de tache\n");
 	exit(0); /*auto-destruction*/
