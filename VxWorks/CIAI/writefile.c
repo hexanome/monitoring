@@ -1,7 +1,10 @@
 #include "writefile.h"
-
+#include "mere.h"
+#include <stdio.h>
 void startwritefile()
 {
+	/* CREATION DU FICHIER */
+    FILE * message_file = fopen("messages","w");
 	//provisoire, � supprimer
 	MSG_Q_ID msgQId;
 		
@@ -17,5 +20,5 @@ void startwritefile()
 		// On rajoute le message d'erreur dans le fichier "messages"
 		fwrite (erreur, sizeof(char), strlen(erreur), message_file);	
 	}
-	fclose (mes);
+	fclose (message_file);
 }

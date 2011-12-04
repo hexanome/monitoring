@@ -3,10 +3,11 @@
 #include <semLib.h>  	/* Gestion des semaphores*/
 #include <wdLib.h>	    /* Gestion des alarmes   */
 /* GESTION RESEAU */
-#include <stdio.h> 
-#include <sockLib.h>
-#include <inetLib.h>
-#include <strLib.h>
+//#include <stdio.h> 
+//#include <stdioLib.h>
+//#include <sockLib.h>
+//#include <inetLib.h>
+//#include <strLib.h>
 /* GESTION TACHES */
 #include "mere.h"		/* Interface			 */
 #include "boxing.h"		/* Interface de la tache Conditionnement */
@@ -21,6 +22,7 @@ static void destruction();
 
 void initialisation()
 {
+
 	tid_main = taskIdSelf();
 	taskPrioritySet(tid_main, 10); 	/* Redefinition de la priorite */
 
@@ -28,9 +30,6 @@ void initialisation()
 
 	/* INITIALISATION DE LA SOCKET */
 	createsocket();
-	
-	/* CREATION DU FICHIER */
-    message_file = fopen("messages","w");
 
 	/*Creation des BAL*/
 	mid_boxing_todo   = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
@@ -82,9 +81,7 @@ void initialisation()
 }
 
 static void destruction()
-
-	//fclose(message_file);
-	/* TO DO */
+{
 	printf("Fin de tache\n");
 	exit(0); /*auto-destruction*/
 }
