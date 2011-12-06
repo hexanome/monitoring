@@ -35,6 +35,8 @@ static void initialisation()
 											//4 byte per msg max, and msgs filled up in fifo order
 	mid_boxing_done   = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
 											//4 byte per msg max, and msgs filled up in fifo order
+	mid_received_part = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
+												//4 byte per msg max, and msgs filled up in fifo order
 	mid_log			  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
 											//4 byte per msg max, and msgs filled up in fifo order
 	mid_packaging  	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
@@ -63,7 +65,7 @@ static void initialisation()
 							  30,                                    /* priority of new task */
 							  0x0008,                                /* task option word */
 							  10000,                                 /* size (bytes) of stack needed plus name */
-							  (FUNCPTR) startWarehouse,		             /* entry point of new task */
+							  (FUNCPTR) startWarehouse,		         /* entry point of new task */
 							  0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 							  );
 	tid_writefile      = taskSpawn("writefile",     				 /* name of new task (stored at pStackBase) */
@@ -77,7 +79,7 @@ static void initialisation()
 							  40,                                    /* priority of new task */
 							  0x0008,                                /* task option word */
 							  10000,                                 /* size (bytes) of stack needed plus name */
-							  (FUNCPTR) startWriteSocket,		             /* entry point of new task */
+							  (FUNCPTR) startWriteSocket,		     /* entry point of new task */
 							  0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 							  );
 	tid_read           = taskSpawn("read",     						 /* name of new task (stored at pStackBase) */
@@ -98,7 +100,7 @@ static void destruction()
 	exit(0); /*auto-destruction*/
 }
 
-static int main()
+int main(int argc, char * argv[])
 {
 	initialisation();
 	taskSuspend(0);
@@ -112,12 +114,11 @@ static int createsocket()
 	struct sockaddr_in serverAddr;
 	struct sockaddr_in clientAddr;
 	struct request myRequest;
-
+	int sockAddrSize;
 	// creation d'une socket (SOCK_STREAM pour protocole TCP)
-	int sock = socket(AF_INET, SOCK_STREAM, 0);
+	sock = socket(AF_INET, SOCK_STREAM, 0);
 	// Assign address to socket
-
-	int sockAddrSize = sizeof (struct sockaddr_in);
+	sockAddrSize = sizeof (struct sockaddr_in);
 	bzero ((char *) &serverAddr, sockAddrSize);
 	serverAddr.sin_family = AF_INET;
 	serverAddr.sin_len = (u_char) sockAddrSize;

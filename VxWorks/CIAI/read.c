@@ -13,7 +13,7 @@ void handlingMessage(char* replyBuf){
 	type = (int)replyBuf[0];
 	switch(type){
 	case 'i': // On rajoute un message dans la boite aux lettres lots
-		//msgQSend(msg);
+	//	sgQSend(msgQid, replyBuf, strlen(replyBuf), NO_WAIT, MSG_PRI_NORMAL);
 		// TODO
 		break;
 	case 'c':
