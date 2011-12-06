@@ -114,12 +114,11 @@ static int createsocket()
 	struct sockaddr_in serverAddr;
 	struct sockaddr_in clientAddr;
 	struct request myRequest;
-
+	int sockAddrSize;
 	// creation d'une socket (SOCK_STREAM pour protocole TCP)
 	sock = socket(AF_INET, SOCK_STREAM, 0);
 	// Assign address to socket
-
-	int sockAddrSize = sizeof (struct sockaddr_in);
+	sockAddrSize = sizeof (struct sockaddr_in);
 	bzero ((char *) &serverAddr, sockAddrSize);
 	serverAddr.sin_family = AF_INET;
 	serverAddr.sin_len = (u_char) sockAddrSize;
