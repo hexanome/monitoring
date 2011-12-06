@@ -15,7 +15,7 @@ void startWriteFile()
 		msgQReceive(msgQId ,erreur, sizeof (&erreur), WAIT_FOREVER);
 			
 		// On rajoute le message d'erreur dans le fichier "messages"
-	//	fwrite (erreur, sizeof(char), strlen(erreur), message_file);	
+		fwrite (erreur, sizeof(char), strlen(erreur), message_file);	
 	}
 //	fclose (message_file); // à mettre dans la destruction d'une tache
 }

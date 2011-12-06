@@ -1,5 +1,4 @@
 #include "writesocket.h"
-//#include "mere.h"
 
 void startWriteSocket()
 {
@@ -16,6 +15,6 @@ void startWriteSocket()
 		msgQReceive(msgQId ,erreur, sizeof (&erreur), WAIT_FOREVER);
 		
 		// On écrit sur la socket
-		//write(sock, erreur, sizeof (erreur));
+	//	write(sock, erreur, sizeof (erreur));
 	}	
 }
