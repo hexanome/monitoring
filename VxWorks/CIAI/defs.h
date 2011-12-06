@@ -13,4 +13,6 @@ typedef struct{
 	int partsNb;
 	int badParts;
 } box;
+
+typedef char message[140];
 #endif
