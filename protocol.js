@@ -6,11 +6,10 @@
 // Sending messages.
 
 function readmessage(buffer) {
-  return {
-    type: buffer.readUInt8(0).toString(),
-    size: +buffer.readInt32(1, true),
-    message: buffer.slice((8+32)/8, size).toString()
-  };
+  var type = buffer.readUInt8(0).toString(),
+      size = +buffer.readUInt32BE(1, true),
+      message = buffer.slice((8+32)/8, size).toString();
+  return {type:type, size:size, message:message};
 }
 
 // Reading messages.
@@ -19,9 +18,13 @@ function cca(c) {
   return c.charCodeAt(0);
 }
 
-function craftinit() {
-  var buf = new Buffer(1);
+// `nbparts` is the number of part types.
+function craftinit(nbparts) {
+  var buf = new Buffer(1 + (32*nbparts.length / 8));
   buf[0] = cca('i');
+  for (var i = 0; i < nbparts.length; i++) {
+    buf.writeUInt32BE(nbparts[i], 1 + (32*i / 8));
+  }
   return buf;
 }
 

@@ -1,6 +1,6 @@
 ## Server to Client
 
-    [type:char][size:int32][message:buffer(size)]
+    [type:char][size:uint32][message:buffer(size)]
 
 The size indicated is that of the message only.
 
@@ -13,9 +13,7 @@ The size indicated is that of the message only.
 
 ### type: 'i' init
 
-[Self-descriptive]
-
-    [type:char][nb_part1][nb_part2] (and so on…)
+    [type:char][nb_part1:uint32][nb_part2:uint32]
 
 ### type: 'c' command
 
@@ -24,7 +22,7 @@ The size indicated is that of the message only.
 - numCommande: numéro de la commande
 - part\_type: 1, 2 (ou autre)
 - part\_number: nombre de pièce de type part\_type
-- part\_number\_dif: nombre de pièces différentes dans la commande
+- part\_number\_dif: nombre de palettes différentes dans la commande
 
 ### type: 'a' answer
 
