@@ -8,6 +8,7 @@
 
 MSG_Q_ID mid_boxing_todo;
 MSG_Q_ID mid_boxing_done;
+MSG_Q_ID mid_received_part;
 MSG_Q_ID mid_log;
 MSG_Q_ID mid_packaging;
 MSG_Q_ID mid_batch;
@@ -22,6 +23,8 @@ int tid_read;
 int tid_main;
 
 FILE * message_file;
+
+int sock;
 
 int main();
 static int createsocket();
