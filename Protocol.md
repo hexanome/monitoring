@@ -15,6 +15,8 @@ The size indicated is that of the message only.
 
 [Self-descriptive]
 
+    [type:char][nb_part1][nb_part2] (and so on…)
+
 ### type: 'c' command
 
     [type:char][numCommande:uint32][part_type:char][part_number:uint32][part_number_dif:int16]
