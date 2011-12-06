@@ -3,11 +3,13 @@
 #include <semLib.h>  	/* Gestion des semaphores*/
 #include <wdLib.h>	    /* Gestion des alarmes   */
 /* GESTION RESEAU */
-#include "stdio.h"
-#include "sockLib.h"
-#include "msgQLib.h"
-#include "inetLib.h"
-#include "strLib.h"
+#include <stdio.h>
+#include <sockLib.h>
+#include <msgQLib.h>
+#include <inetLib.h>
+#include <strLib.h>
+/* GESTION FICHIER */
+#include <string.h>
 /* GESTION TACHES */
 #include "mere.h"		/* Interface			 */
 #include "boxing.h"		/* Interface de la tache Conditionnement */
@@ -16,33 +18,32 @@
 #include "read.h"	 	/* Interface de la tache Lire			 */
 #include "write.h"	 	/* Interface de la tache Ecire			 */
 
-void initialisation()
+static void initialisation()
 {
 	tid_main = taskIdSelf();
 	taskPrioritySet(tid_main, 10); 	/* Redefinition de la priorite */
+	
+	/* CREATION DU FICHIER */
+    message_file = fopen("messages","w");
 
 	/* INITIALISATION DES VARIABLES */
 
 	/* INITIALISATION DE LA SOCKET */
 	createsocket();
-	
-	/* CREATION DU FICHIER */
-	FILE * message_file;
-        message_file = fopen("messages","w");
 
 	/*Creation des BAL*/
 	mid_boxing_todo   = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-								//4 byte per msg max, and msgs filled up in fifo order
+											//4 byte per msg max, and msgs filled up in fifo order
 	mid_boxing_done   = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-								//4 byte per msg max, and msgs filled up in fifo order
-	mid_log		 = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-								//4 byte per msg max, and msgs filled up in fifo order
-	mid_packing  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-							//4 byte per msg max, and msgs filled up in fifo order
-	mid_patch 	 = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-								//4 byte per msg max, and msgs filled up in fifo order
-	mid_boxing   = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-								//4 byte per msg max, and msgs filled up in fifo order							
+											//4 byte per msg max, and msgs filled up in fifo order
+	mid_log			  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
+											//4 byte per msg max, and msgs filled up in fifo order
+	mid_packing  	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
+											//4 byte per msg max, and msgs filled up in fifo order
+	mid_batch 	 	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
+											//4 byte per msg max, and msgs filled up in fifo order
+	mid_boxing   	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
+											//4 byte per msg max, and msgs filled up in fifo order							
 	
 	/*Creation des taches*/
 	tid_boxing     = taskSpawn("boxing",     						 /* name of new task (stored at pStackBase) */
@@ -80,18 +81,18 @@ void initialisation()
 							  (FUNCPTR) capteur,		             /* entry point of new task */
 							  0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 							  );
-	}
 }
 
-void destruction()
+static void destruction()
 {
+	/* Fermeture du fichier */
 	fclose(message_file);
 	/* TO DO */
 	printf("Fin de tache\n");
 	exit(0); /*auto-destruction*/
 }
 
-int main()
+static int main()
 {
 	initialisation();
 	taskSuspend(0);
@@ -100,7 +101,7 @@ int main()
 	return 0;
 }
 
-int createsocket()
+static int createsocket()
 {
 	struct sockaddr_in serverAddr;
 	struct sockaddr_in clientAddr;

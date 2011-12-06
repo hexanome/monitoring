@@ -19,23 +19,26 @@ socket.on('connect', function() {
   // Listen to incoming data
   socket.on('data', function(data) {
     // TODO notify the client
-    console.log('received ' + data);
+    var message = protocol.readmessage(data);
+    console.log('DATA: %s%s',
+      message.type === 'e'? '[error] ': '', message.message);
   });
+
+  // All camp actions are defined here.
 
   camp.add('init', function(data) {
     var msg = '';
-    socket.write(msg);
+    socket.write(protocol.craftinit());
   });
 
   camp.add('stop', function(data) {
     console.log('STOP');
-    var msg = 'stop message'; // TODO
-    socket.write(msg);
+    socket.write(protocol.craftanswer('s'));
   });
 
   camp.add('go', function(data) {
     var msg = 'go message'; // TODO
-    socket.write(msg);
+    socket.write(protocol.craftanswer('c'));
   });
 });
 
