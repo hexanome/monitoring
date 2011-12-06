@@ -13,7 +13,7 @@ The size indicated is that of the message only.
 
 ### type: 'i' init
 
-    [type:char][nb_part1][nb_part2]
+    [type:char][nb_part1:uint32][nb_part2:uint32]
 
 ### type: 'c' command
 
