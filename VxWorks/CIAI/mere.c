@@ -32,17 +32,17 @@ void initialisation()
 
 	/*Creation des BAL*/
 	mid_boxing_todo   = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-								//4 byte per msg max, and msgs filled up in fifo order
+											//4 byte per msg max, and msgs filled up in fifo order
 	mid_boxing_done   = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-								//4 byte per msg max, and msgs filled up in fifo order
-	mid_log		 = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-								//4 byte per msg max, and msgs filled up in fifo order
-	mid_packing  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-							//4 byte per msg max, and msgs filled up in fifo order
-	mid_patch 	 = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-								//4 byte per msg max, and msgs filled up in fifo order
-	mid_boxing   = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-								//4 byte per msg max, and msgs filled up in fifo order							
+											//4 byte per msg max, and msgs filled up in fifo order
+	mid_log			  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
+											//4 byte per msg max, and msgs filled up in fifo order
+	mid_packing  	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
+											//4 byte per msg max, and msgs filled up in fifo order
+	mid_patch 	 	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
+											//4 byte per msg max, and msgs filled up in fifo order
+	mid_boxing   	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
+											//4 byte per msg max, and msgs filled up in fifo order							
 	
 	/*Creation des taches*/
 	tid_boxing     = taskSpawn("boxing",     						 /* name of new task (stored at pStackBase) */
@@ -85,6 +85,7 @@ void initialisation()
 
 void destruction()
 {
+	/* Fermeture du fichier */
 	fclose(message_file);
 	/* TO DO */
 	printf("Fin de tache\n");
