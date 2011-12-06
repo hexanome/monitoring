@@ -1,6 +1,6 @@
 ## Server to Client
 
-    [type:char][size:int32][message:buffer(size)]
+    [type:char][size:uint32][message:buffer(size)]
 
 The size indicated is that of the message only.
 
