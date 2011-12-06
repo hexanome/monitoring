@@ -1,11 +1,7 @@
 #include "writesocket.h"
-//#include "mere.h"
 
 void startWriteSocket()
-{
-	//provisoire, à supprimer
-	 MSG_Q_ID msgQId;
-	
+{	
 	// Message d'erreur
 	char *erreur;
 			
@@ -13,9 +9,9 @@ void startWriteSocket()
 	for (;;)
 	{
 		//On attend un message de la boite aux letres "messages"
-		msgQReceive(msgQId ,erreur, sizeof (&erreur), WAIT_FOREVER);
+		msgQReceive(mid_log ,erreur, sizeof (&erreur), WAIT_FOREVER);
 		
 		// On écrit sur la socket
-		//write(sock, erreur, sizeof (erreur));
+		write(sock, erreur, sizeof (erreur));
 	}	
 }
