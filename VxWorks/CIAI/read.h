@@ -10,3 +10,5 @@
 
 #define SERVER_PORT_NUM 5001
 #define REPLY_MSG_SIZE 100 // provisoir
+
+int startRead();

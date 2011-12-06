@@ -1,6 +1,6 @@
 #include "writefile.h"
 
-void startwritefile()
+void startWriteFile()
 {
 	//provisoire, à supprimer
 	MSG_Q_ID msgQId;
