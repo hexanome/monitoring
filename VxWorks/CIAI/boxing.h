@@ -4,4 +4,4 @@
  * >No boxes
  * >Bad printer state
  */
-
+int startBoxing();
