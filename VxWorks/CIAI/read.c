@@ -1,25 +1,19 @@
-#include "stdio.h"
-#include "sockLib.h"
+#include "read.h"
 
-// faire du tri dans les includes inutiles
-#include "vxWorks.h"
-#include "inetLib.h"
-#include "stdioLib.h"
-#include "strLib.h"
-#include "hostLib.h"
+/* Cette tache consiste à  traiter les messages reçu par le client */
 
-#define SERVER_PORT_NUM 5001
-#define REPLY_MSG_SIZE 100 // provisoir
+// a supprimer
+int sock;
 
-/**
- * cette fonction consiste Ã  traiter les messages reÃ§u par le client
- * 
- */
+//provisoire, à supprimer
+	MSG_Q_ID msgQId;
+
 void handlingMessage(char* replyBuf){
 	int type;
 	type = (int)replyBuf[0];
 	switch(type){
-	case 'i':
+	case 'i': // On rajoute un message dans la boite aux lettres lots
+		//msgQSend(msg);
 		// TODO
 		break;
 	case 'c':
@@ -28,39 +22,48 @@ void handlingMessage(char* replyBuf){
 	case 'a':
 		// TODO
 		break;
-	}
-	
+	}	
 } // handlingMessage()
 
-/**
- * 
- */
+// a enlever car ce code se trouve dans la tache mère
+int createsocket()
+{
+	struct sockaddr_in serverAddr;
+		struct sockaddr_in clientAddr;
+		struct request myRequest;
+
+		// creation d'une socket (SOCK_STREAM pour protocole TCP)
+		int s = socket(AF_INET, SOCK_STREAM, 0);
+		// Assign address to socket
+
+		int sockAddrSize = sizeof (struct sockaddr_in);
+		bzero ((char *) &serverAddr, sockAddrSize);
+		serverAddr.sin_family = AF_INET;
+		serverAddr.sin_len = (u_char) sockAddrSize;
+		serverAddr.sin_port = htons (SERVER_PORT_NUM);
+		serverAddr.sin_addr.s_addr = htonl (INADDR_ANY);
+		printf("Hello Hicham3\n");
+		bind(s, (struct sockaddr  *) &serverAddr, sockAddrSize);
+
+		// Allow others to connect to socket
+		listen(s, 1);
+		// Complete connection between sockets
+		accept(s, (struct sockaddr *) &clientAddr, &sockAddrSize);
+		sock = s;
+}
+
+// Fin du à enlever
+
 void client(){
-	// creation
-	struct sockaddr_in clientAddr;
-	int clientAddrSize = sizeof (struct sockaddr_in);
-	int s, byteAvailebal;
-	char replyBuf[REPLY_MSG_SIZE];
 	
-	//initialisation des paramÃ¨tre de l'adresse
-	bzero ((char *) &clientAddr, clientAddrSize);
-	clientAddr.sin_family = AF_INET;
-	clientAddr.sin_len = (u_char) clientAddrSize;
-	clientAddr.sin_port = htons (SERVER_PORT_NUM);
-	clientAddr.sin_addr.s_addr = htonl (INADDR_ANY);
+	char * replyBuf;
 	
-	// initialistion de la socket
-	s = socket(AF_INET, SOCK_STREAM, 0);
-	
-	// connecter la socket avec l'adresse du client
-	connect(s,(struct sockaddr  *) &clientAddr,clientAddrSize);
-	
-	//lire le contenue de la socket
-	for(ioctl (sFd, FIONREAD,&byteAvailebal); ;ioctl (sFd, FIONREAD,&byteAvailebal))
-	{
-		if(0 == byteAvailebal)
-			continue;
-		read(s, replyBuf, REPLY_MSG_SIZE);
+	// Lire le contenu de la socket
+//	for(ioctl (sFd, FIONREAD,&byteAvailebal); ;ioctl (sFd, FIONREAD,&byteAvailebal))
+//	{
+//		if(0 == byteAvailebal)
+//			continue;
+		read(sock, replyBuf, 0);
 		handlingMessage(replyBuf);
-	}
+//	}
 }
