@@ -6,4 +6,4 @@
 
 #define SERVER_PORT_NUM 5001
 
-void startwritesocket();
+void startWriteSocket();

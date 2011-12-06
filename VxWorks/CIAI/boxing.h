@@ -5,3 +5,4 @@
  * >Bad printer state
  */
 
+int startBoxing();
