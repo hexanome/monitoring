@@ -29,8 +29,11 @@ static void initialisation()
 
 	/* INITIALISATION DE LA SOCKET */
 	createsocket();
+	
+	/* Creation du semaphore */
+	sid_recover = semMCreate(SEM_Q_FIFO);
 
-	/*Creation des BAL*/
+	/* Creation des BAL*/
 	mid_boxing_todo   = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
 											//4 byte per msg max, and msgs filled up in fifo order
 	mid_boxing_done   = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
@@ -42,9 +45,7 @@ static void initialisation()
 	mid_packaging  	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
 											//4 byte per msg max, and msgs filled up in fifo order
 	mid_batch 	 	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-											//4 byte per msg max, and msgs filled up in fifo order
-	mid_boxing   	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-											//4 byte per msg max, and msgs filled up in fifo order							
+											//4 byte per msg max, and msgs filled up in fifo order					
 	
 	/*Creation des taches*/
 	tid_boxing         = taskSpawn("boxing",     					 /* name of new task (stored at pStackBase) */
