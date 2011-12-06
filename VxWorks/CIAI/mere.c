@@ -16,6 +16,8 @@
 #include "read.h"	 	/* Interface de la tache Lire			 */
 #include "write.h"	 	/* Interface de la tache Ecire			 */
 
+static void destruction();
+static int createsocket();
 void initialisation()
 {
 	tid_main = taskIdSelf();
@@ -80,10 +82,9 @@ void initialisation()
 							  (FUNCPTR) capteur,		             /* entry point of new task */
 							  0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 							  );
-	}
 }
 
-void destruction()
+static void destruction()
 {
 	/* Fermeture du fichier */
 	fclose(message_file);
@@ -101,7 +102,7 @@ int main()
 	return 0;
 }
 
-int createsocket()
+static int createsocket()
 {
 	struct sockaddr_in serverAddr;
 	struct sockaddr_in clientAddr;
