@@ -98,3 +98,280 @@ java.io.FileNotFoundException
 	at org.eclipse.cdt.internal.ui.text.c.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:131)
 	at org.eclipse.cdt.internal.ui.text.c.hover.CEditorTextHoverProxy.getHoverInfo2(CEditorTextHoverProxy.java:86)
 	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+
+!ENTRY org.eclipse.cdt.core 4 4 2011-12-02 11:36:45.054
+!MESSAGE Error
+!STACK 1
+org.eclipse.core.runtime.CoreException: IOException
+	at org.eclipse.cdt.internal.core.pdom.db.Database.markFileIncomplete(Database.java:648)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flushAndUnlockChunks(Database.java:613)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flush(Database.java:601)
+	at org.eclipse.cdt.internal.core.pdom.PDOM.flush(PDOM.java:950)
+	at org.eclipse.cdt.internal.core.pdom.WritablePDOM.flush(WritablePDOM.java:92)
+	at org.eclipse.cdt.internal.core.index.WritableCIndex.flush(WritableCIndex.java:133)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:245)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:111)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:94)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: java.io.IOException: Le nom réseau spécifié n'est plus disponible
+	at sun.nio.ch.FileDispatcher.pwrite0(Native Method)
+	at sun.nio.ch.FileDispatcher.pwrite(FileDispatcher.java:51)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:100)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:75)
+	at sun.nio.ch.FileChannelImpl.write(FileChannelImpl.java:651)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.markFileIncomplete(Database.java:646)
+	... 9 more
+!SUBENTRY 1 org.eclipse.cdt.core 4 0 2011-12-02 11:36:45.054
+!MESSAGE IOException
+!STACK 0
+java.io.IOException: Le nom réseau spécifié n'est plus disponible
+	at sun.nio.ch.FileDispatcher.pwrite0(Native Method)
+	at sun.nio.ch.FileDispatcher.pwrite(FileDispatcher.java:51)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:100)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:75)
+	at sun.nio.ch.FileChannelImpl.write(FileChannelImpl.java:651)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.markFileIncomplete(Database.java:646)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flushAndUnlockChunks(Database.java:613)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flush(Database.java:601)
+	at org.eclipse.cdt.internal.core.pdom.PDOM.flush(PDOM.java:950)
+	at org.eclipse.cdt.internal.core.pdom.WritablePDOM.flush(WritablePDOM.java:92)
+	at org.eclipse.cdt.internal.core.index.WritableCIndex.flush(WritableCIndex.java:133)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:245)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:111)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:94)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.core 4 4 2011-12-02 11:36:55.273
+!MESSAGE Error
+!STACK 1
+org.eclipse.core.runtime.CoreException: IOException
+	at org.eclipse.cdt.internal.core.pdom.db.Chunk.flush(Chunk.java:53)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flushAndUnlockChunks(Database.java:616)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flush(Database.java:601)
+	at org.eclipse.cdt.internal.core.pdom.PDOM.flush(PDOM.java:950)
+	at org.eclipse.cdt.internal.core.pdom.WritablePDOM.flush(WritablePDOM.java:92)
+	at org.eclipse.cdt.internal.core.index.WritableCIndex.flush(WritableCIndex.java:133)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:245)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:111)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:94)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: java.io.IOException: Le nom réseau spécifié n'est plus disponible
+	at sun.nio.ch.FileDispatcher.pwrite0(Native Method)
+	at sun.nio.ch.FileDispatcher.pwrite(FileDispatcher.java:51)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:100)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:75)
+	at sun.nio.ch.FileChannelImpl.write(FileChannelImpl.java:651)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.write(Database.java:152)
+	at org.eclipse.cdt.internal.core.pdom.db.Chunk.flush(Chunk.java:51)
+	... 9 more
+!SUBENTRY 1 org.eclipse.cdt.core 4 0 2011-12-02 11:36:55.273
+!MESSAGE IOException
+!STACK 0
+java.io.IOException: Le nom réseau spécifié n'est plus disponible
+	at sun.nio.ch.FileDispatcher.pwrite0(Native Method)
+	at sun.nio.ch.FileDispatcher.pwrite(FileDispatcher.java:51)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:100)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:75)
+	at sun.nio.ch.FileChannelImpl.write(FileChannelImpl.java:651)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.write(Database.java:152)
+	at org.eclipse.cdt.internal.core.pdom.db.Chunk.flush(Chunk.java:51)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flushAndUnlockChunks(Database.java:616)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flush(Database.java:601)
+	at org.eclipse.cdt.internal.core.pdom.PDOM.flush(PDOM.java:950)
+	at org.eclipse.cdt.internal.core.pdom.WritablePDOM.flush(WritablePDOM.java:92)
+	at org.eclipse.cdt.internal.core.index.WritableCIndex.flush(WritableCIndex.java:133)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:245)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:111)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:94)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.core 4 4 2011-12-02 11:38:07.493
+!MESSAGE Error
+!STACK 1
+org.eclipse.core.runtime.CoreException: IOException
+	at org.eclipse.cdt.internal.core.pdom.db.Chunk.flush(Chunk.java:53)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flushAndUnlockChunks(Database.java:616)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flush(Database.java:601)
+	at org.eclipse.cdt.internal.core.pdom.PDOM.flush(PDOM.java:950)
+	at org.eclipse.cdt.internal.core.pdom.WritablePDOM.flush(WritablePDOM.java:92)
+	at org.eclipse.cdt.internal.core.index.WritableCIndex.flush(WritableCIndex.java:133)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:245)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:111)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:94)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: java.io.IOException: Le nom réseau spécifié n'est plus disponible
+	at sun.nio.ch.FileDispatcher.pwrite0(Native Method)
+	at sun.nio.ch.FileDispatcher.pwrite(FileDispatcher.java:51)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:100)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:75)
+	at sun.nio.ch.FileChannelImpl.write(FileChannelImpl.java:651)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.write(Database.java:152)
+	at org.eclipse.cdt.internal.core.pdom.db.Chunk.flush(Chunk.java:51)
+	... 9 more
+!SUBENTRY 1 org.eclipse.cdt.core 4 0 2011-12-02 11:38:07.493
+!MESSAGE IOException
+!STACK 0
+java.io.IOException: Le nom réseau spécifié n'est plus disponible
+	at sun.nio.ch.FileDispatcher.pwrite0(Native Method)
+	at sun.nio.ch.FileDispatcher.pwrite(FileDispatcher.java:51)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:100)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:75)
+	at sun.nio.ch.FileChannelImpl.write(FileChannelImpl.java:651)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.write(Database.java:152)
+	at org.eclipse.cdt.internal.core.pdom.db.Chunk.flush(Chunk.java:51)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flushAndUnlockChunks(Database.java:616)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flush(Database.java:601)
+	at org.eclipse.cdt.internal.core.pdom.PDOM.flush(PDOM.java:950)
+	at org.eclipse.cdt.internal.core.pdom.WritablePDOM.flush(WritablePDOM.java:92)
+	at org.eclipse.cdt.internal.core.index.WritableCIndex.flush(WritableCIndex.java:133)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:245)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:111)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:94)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.core 4 4 2011-12-02 11:38:35.994
+!MESSAGE Error
+!STACK 1
+org.eclipse.core.runtime.CoreException: IOException
+	at org.eclipse.cdt.internal.core.pdom.db.Chunk.flush(Chunk.java:53)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flushAndUnlockChunks(Database.java:616)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flush(Database.java:601)
+	at org.eclipse.cdt.internal.core.pdom.PDOM.flush(PDOM.java:950)
+	at org.eclipse.cdt.internal.core.pdom.WritablePDOM.flush(WritablePDOM.java:92)
+	at org.eclipse.cdt.internal.core.index.WritableCIndex.flush(WritableCIndex.java:133)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:245)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:111)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:94)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: java.io.IOException: Le nom réseau spécifié n'est plus disponible
+	at sun.nio.ch.FileDispatcher.pwrite0(Native Method)
+	at sun.nio.ch.FileDispatcher.pwrite(FileDispatcher.java:51)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:100)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:75)
+	at sun.nio.ch.FileChannelImpl.write(FileChannelImpl.java:651)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.write(Database.java:152)
+	at org.eclipse.cdt.internal.core.pdom.db.Chunk.flush(Chunk.java:51)
+	... 9 more
+!SUBENTRY 1 org.eclipse.cdt.core 4 0 2011-12-02 11:38:35.994
+!MESSAGE IOException
+!STACK 0
+java.io.IOException: Le nom réseau spécifié n'est plus disponible
+	at sun.nio.ch.FileDispatcher.pwrite0(Native Method)
+	at sun.nio.ch.FileDispatcher.pwrite(FileDispatcher.java:51)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:100)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:75)
+	at sun.nio.ch.FileChannelImpl.write(FileChannelImpl.java:651)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.write(Database.java:152)
+	at org.eclipse.cdt.internal.core.pdom.db.Chunk.flush(Chunk.java:51)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flushAndUnlockChunks(Database.java:616)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flush(Database.java:601)
+	at org.eclipse.cdt.internal.core.pdom.PDOM.flush(PDOM.java:950)
+	at org.eclipse.cdt.internal.core.pdom.WritablePDOM.flush(WritablePDOM.java:92)
+	at org.eclipse.cdt.internal.core.index.WritableCIndex.flush(WritableCIndex.java:133)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:245)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:111)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:94)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.core 4 4 2011-12-02 11:39:26.167
+!MESSAGE Error
+!STACK 1
+org.eclipse.core.runtime.CoreException: IOException
+	at org.eclipse.cdt.internal.core.pdom.db.Chunk.flush(Chunk.java:53)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flushAndUnlockChunks(Database.java:616)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flush(Database.java:601)
+	at org.eclipse.cdt.internal.core.pdom.PDOM.flush(PDOM.java:950)
+	at org.eclipse.cdt.internal.core.pdom.WritablePDOM.flush(WritablePDOM.java:92)
+	at org.eclipse.cdt.internal.core.index.WritableCIndex.flush(WritableCIndex.java:133)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:245)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:111)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:94)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: java.io.IOException: Le nom réseau spécifié n'est plus disponible
+	at sun.nio.ch.FileDispatcher.pwrite0(Native Method)
+	at sun.nio.ch.FileDispatcher.pwrite(FileDispatcher.java:51)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:100)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:75)
+	at sun.nio.ch.FileChannelImpl.write(FileChannelImpl.java:651)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.write(Database.java:152)
+	at org.eclipse.cdt.internal.core.pdom.db.Chunk.flush(Chunk.java:51)
+	... 9 more
+!SUBENTRY 1 org.eclipse.cdt.core 4 0 2011-12-02 11:39:26.167
+!MESSAGE IOException
+!STACK 0
+java.io.IOException: Le nom réseau spécifié n'est plus disponible
+	at sun.nio.ch.FileDispatcher.pwrite0(Native Method)
+	at sun.nio.ch.FileDispatcher.pwrite(FileDispatcher.java:51)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:100)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:75)
+	at sun.nio.ch.FileChannelImpl.write(FileChannelImpl.java:651)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.write(Database.java:152)
+	at org.eclipse.cdt.internal.core.pdom.db.Chunk.flush(Chunk.java:51)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flushAndUnlockChunks(Database.java:616)
+	at org.eclipse.cdt.internal.core.pdom.db.Database.flush(Database.java:601)
+	at org.eclipse.cdt.internal.core.pdom.PDOM.flush(PDOM.java:950)
+	at org.eclipse.cdt.internal.core.pdom.WritablePDOM.flush(WritablePDOM.java:92)
+	at org.eclipse.cdt.internal.core.index.WritableCIndex.flush(WritableCIndex.java:133)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:245)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:111)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:94)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2011-12-02 11:43:52.237 -----------------------------------------------
+eclipse.buildId=20081218-0628
+java.version=1.5.0_11
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_FR
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.windriver.ide.common.ui 1 0 2011-12-02 11:44:46.291
+!MESSAGE The capability VxWorks 5.5.x Development was disabled due to errors in the underlying platform. Once the platform is registered properly to install.properties Workbench support will be reenabled automatically. 
+
+!ENTRY com.windriver.ide.target 1 0 2011-12-02 11:44:52.577
+!MESSAGE C:\WindRiver\workbench-3.1\dfw\\x86-win32\bin\dfwserver.exe  -protocol mi -io sockets -useregistry -session dfw-wb31-ardjossinet -registryhost localhost
+
+!ENTRY com.windriver.ide.target 1 0 2011-12-02 11:44:53.513
+!MESSAGE Connected to dfwserver at 127.0.0.1, 127.0.0.1:1969, PID=1040, Session="dfw-wb31-ardjossinet"
+
+!ENTRY org.eclipse.help 4 0 2011-12-02 11:46:57.295
+!MESSAGE Error reading context-sensitive help file /"com.windriver.ide.doc.platform_general_vxworks/vxworks_component_reference/html/contexts.xml" (skipping file)
+!STACK 0
+java.io.FileNotFoundException
+	at org.eclipse.help.internal.context.ContextFileProvider.loadContexts(ContextFileProvider.java:235)
+	at org.eclipse.help.internal.context.ContextFileProvider.getContexts(ContextFileProvider.java:181)
+	at org.eclipse.help.internal.context.ContextFileProvider.getPluginContexts(ContextFileProvider.java:158)
+	at org.eclipse.help.internal.context.ContextFileProvider.getContext(ContextFileProvider.java:83)
+	at org.eclipse.help.internal.context.ContextManager.getContext(ContextManager.java:85)
+	at org.eclipse.help.HelpSystem.getContext(HelpSystem.java:49)
+	at com.windriver.ide.internal.apidoc.WRAPIHelpProvider.getFunctionInfo(WRAPIHelpProvider.java:110)
+	at org.eclipse.cdt.internal.ui.text.CHelpSettings.getFunctionInfo(CHelpSettings.java:121)
+	at org.eclipse.cdt.internal.ui.CHelpProviderManager.getFunctionInfo(CHelpProviderManager.java:163)
+	at org.eclipse.cdt.internal.ui.text.c.hover.CDocHover.getHoverInfo(CDocHover.java:77)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AbstractCEditorTextHover.getHoverInfo2(AbstractCEditorTextHover.java:83)
+	at org.eclipse.cdt.internal.ui.text.c.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:131)
+	at org.eclipse.cdt.internal.ui.text.c.hover.CEditorTextHoverProxy.getHoverInfo2(CEditorTextHoverProxy.java:86)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+
+!ENTRY org.eclipse.help 4 0 2011-12-02 11:46:57.311
+!MESSAGE Error reading context-sensitive help file /"com.windriver.ide.doc.platform_general_vxworks/networking_component_reference/html/contexts.xml" (skipping file)
+!STACK 0
+java.io.FileNotFoundException
+	at org.eclipse.help.internal.context.ContextFileProvider.loadContexts(ContextFileProvider.java:235)
+	at org.eclipse.help.internal.context.ContextFileProvider.getContexts(ContextFileProvider.java:181)
+	at org.eclipse.help.internal.context.ContextFileProvider.getPluginContexts(ContextFileProvider.java:158)
+	at org.eclipse.help.internal.context.ContextFileProvider.getContext(ContextFileProvider.java:83)
+	at org.eclipse.help.internal.context.ContextManager.getContext(ContextManager.java:85)
+	at org.eclipse.help.HelpSystem.getContext(HelpSystem.java:49)
+	at com.windriver.ide.internal.apidoc.WRAPIHelpProvider.getFunctionInfo(WRAPIHelpProvider.java:110)
+	at org.eclipse.cdt.internal.ui.text.CHelpSettings.getFunctionInfo(CHelpSettings.java:121)
+	at org.eclipse.cdt.internal.ui.CHelpProviderManager.getFunctionInfo(CHelpProviderManager.java:163)
+	at org.eclipse.cdt.internal.ui.text.c.hover.CDocHover.getHoverInfo(CDocHover.java:77)
+	at org.eclipse.cdt.internal.ui.text.c.hover.AbstractCEditorTextHover.getHoverInfo2(AbstractCEditorTextHover.java:83)
+	at org.eclipse.cdt.internal.ui.text.c.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:131)
+	at org.eclipse.cdt.internal.ui.text.c.hover.CEditorTextHoverProxy.getHoverInfo2(CEditorTextHoverProxy.java:86)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+
+!ENTRY com.windriver.ide.target 1 0 2011-12-02 11:50:41.074
+!MESSAGE cmd /c start '"vxsim0"'  /BELOWNORMAL C:\WindRiver\vxworks-6.7\host\x86-win32\bin\vxsim.exe -f C:\WindRiver\vxworks-6.7\target\proj\simpc_diab\default\vxWorks -p 0 -tn vxsim0
+
+!ENTRY com.windriver.ide.target 1 0 2011-12-02 11:50:41.886
+!MESSAGE C:\WindRiver\workbench-3.1\foundation\\x86-win32\bin\tgtsvr.exe -n vxsim0 -B wdbpipe vxsim0 -R C:\temp -RW -Bt 10 -A

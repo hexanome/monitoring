@@ -1,5 +1,6 @@
 CIAI_partialImage/Debug/Objects/CIAI/write.o: \
   Y:/monitoring/VxWorks/CIAI/write.c \
+  Y:/monitoring/VxWorks/CIAI\write.h \
   C:/WindRiver/vxworks-6.7/target/h\stdio.h \
   C:/WindRiver/vxworks-6.7/target/h\types/vxANSI.h \
   C:/WindRiver/vxworks-6.7/target/h\types/vxCpu.h \
@@ -66,6 +67,10 @@ CIAI_partialImage/Debug/Objects/CIAI/write.o: \
   C:/WindRiver/vxworks-6.7/target/h\unistd.h \
   C:/WindRiver/vxworks-6.7/target/h\dllLib.h \
   C:/WindRiver/vxworks-6.7/target/h\sys/resource.h \
+  C:/WindRiver/vxworks-6.7/target/h\msgQLib.h \
+  C:/WindRiver/vxworks-6.7/target/h\msgQLibCommon.h \
+  C:/WindRiver/vxworks-6.7/target/h\objLib.h \
+  C:/WindRiver/vxworks-6.7/target/h\objLibCommon.h \
   C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\inetLib.h \
   C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\netinet/in.h \
   C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\net/mbuf.h \
@@ -78,16 +83,10 @@ CIAI_partialImage/Debug/Objects/CIAI/write.o: \
   C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\netinet6/in6.h \
   C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\net/route.h \
   C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\arpa/inet.h \
-  C:/WindRiver/vxworks-6.7/target/h\stdioLib.h \
   C:/WindRiver/vxworks-6.7/target/h\strLib.h \
-  C:/WindRiver/vxworks-6.7/target/h\string.h \
-  C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\hostLib.h \
-  C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\wrapper/wrapperHostLib.h \
-  C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\netdb.h \
-  C:/WindRiver/vxworks-6.7/target/h\lstLib.h \
-  C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\net/if.h \
-  C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\sys/queue.h \
-  C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\net/if_var.h
+  C:/WindRiver/vxworks-6.7/target/h\string.h
+
+Y:/monitoring/VxWorks/CIAI\write.h:
 
 C:/WindRiver/vxworks-6.7/target/h\stdio.h:
 
@@ -221,6 +220,14 @@ C:/WindRiver/vxworks-6.7/target/h\dllLib.h:
 
 C:/WindRiver/vxworks-6.7/target/h\sys/resource.h:
 
+C:/WindRiver/vxworks-6.7/target/h\msgQLib.h:
+
+C:/WindRiver/vxworks-6.7/target/h\msgQLibCommon.h:
+
+C:/WindRiver/vxworks-6.7/target/h\objLib.h:
+
+C:/WindRiver/vxworks-6.7/target/h\objLibCommon.h:
+
 C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\inetLib.h:
 
 C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\netinet/in.h:
@@ -245,23 +252,7 @@ C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\net/route.h:
 
 C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\arpa/inet.h:
 
-C:/WindRiver/vxworks-6.7/target/h\stdioLib.h:
-
 C:/WindRiver/vxworks-6.7/target/h\strLib.h:
 
 C:/WindRiver/vxworks-6.7/target/h\string.h:
-
-C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\hostLib.h:
-
-C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\wrapper/wrapperHostLib.h:
-
-C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\netdb.h:
-
-C:/WindRiver/vxworks-6.7/target/h\lstLib.h:
-
-C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\net/if.h:
-
-C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\sys/queue.h:
-
-C:/WindRiver/vxworks-6.7/target/h/wrn/coreip\net/if_var.h:
 
