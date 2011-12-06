@@ -22,12 +22,13 @@ socket.on('connect', function() {
     var message = protocol.readmessage(data);
     console.log('DATA: %s%s',
       message.type === 'e'? '[error] ': '', message.message);
+    camp.Server.emit('log', message);
   });
 
   // All camp actions are defined here.
 
   camp.add('init', function(data) {
-    var msg = '';
+    console.log('INIT');
     socket.write(protocol.craftinit());
   });
 
@@ -37,15 +38,15 @@ socket.on('connect', function() {
   });
 
   camp.add('go', function(data) {
-    var msg = 'go message'; // TODO
+    console.log('GO message'); // TODO
     socket.write(protocol.craftanswer('c'));
   });
+
+  camp.add('log', function() {}, function gotlog(log) {return log;});
 });
 
 // Connect to remote system
 socket.connect(1337); // TODO
-
-console.log('camp contains', camp.Server.Actions);
 
 // Web server options
 var options = {
@@ -56,3 +57,4 @@ var options = {
 
 // Start web server
 camp.start(options);
+

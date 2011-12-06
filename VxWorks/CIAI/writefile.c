@@ -1,8 +1,8 @@
 #include "writefile.h"
 
-void startwritefile()
+void startWriteFile()
 {
-	//provisoire, ï¿½ supprimer
+	//provisoire, à supprimer
 	MSG_Q_ID msgQId;
 		
 	// Message d'erreur
@@ -15,7 +15,7 @@ void startwritefile()
 		msgQReceive(msgQId ,erreur, sizeof (&erreur), WAIT_FOREVER);
 			
 		// On rajoute le message d'erreur dans le fichier "messages"
-		fwrite (erreur, sizeof(char), strlen(erreur), message_file);	
+	//	fwrite (erreur, sizeof(char), strlen(erreur), message_file);	
 	}
-	fclose (mes);
+//	fclose (message_file); // à mettre dans la destruction d'une tache
 }

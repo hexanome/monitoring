@@ -1,7 +1,7 @@
 #include "writesocket.h"
 //#include "mere.h"
 
-void startwritesocket()
+void startWriteSocket()
 {
 	//provisoire, à supprimer
 	 MSG_Q_ID msgQId;
