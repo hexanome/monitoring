@@ -13,9 +13,7 @@ The size indicated is that of the message only.
 
 ### type: 'i' init
 
-[Self-descriptive]
-
-    [type:char][nb_part1][nb_part2] (and so on…)
+    [type:char][nb_part1][nb_part2]
 
 ### type: 'c' command
 
