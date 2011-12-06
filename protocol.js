@@ -19,9 +19,13 @@ function cca(c) {
   return c.charCodeAt(0);
 }
 
-function craftinit() {
-  var buf = new Buffer(1);
+// `nbparts` is the number of part types.
+function craftinit(nbparts) {
+  var buf = new Buffer(1 + (32*nbparts.length / 8));
   buf[0] = cca('i');
+  for (var i = 0; i < nbparts.length; i++) {
+    buf.writeUInt32BE(nbparts[i], 1 + (32*i / 8));
+  }
   return buf;
 }
 
