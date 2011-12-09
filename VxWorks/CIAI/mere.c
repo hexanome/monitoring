@@ -47,7 +47,7 @@ static void initialisation()
 	mid_packaging  	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
 											//4 byte per msg max, and msgs filled up in fifo order
 	mid_batch 	 	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-	mid_error 	 	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
+	mid_actions 	 	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
 	
 	/*Creation des taches*/
 	tid_boxing         = taskSpawn("boxing",     					 /* name of new task (stored at pStackBase) */
@@ -94,6 +94,19 @@ static void initialisation()
 							  );
 }
 
+static void moteur(){
+	message buff;
+	msgQReceive(mid_actions,buff,sizeof(buff),WAIT_FOREVER);
+	switch (buff[0]){
+	case 'p':
+		//error in packaging, let's stop boxing and packaging :
+		taskSuspend(tid_packaging);
+	case 'b':
+		//error in boxing, let's stop it :
+		taskSuspend(tid_boxing);
+		break;
+	}
+}
 static void destruction()
 {
 	/* Fermeture du fichier */
@@ -136,12 +149,14 @@ static int createsocket()
 	accept(sock, (struct sockaddr *) &clientAddr, &sockAddrSize);
 }
 
+//This two functions won't be used by mere, instead they will be used by all taks
+//that need to send errors and messages to mere
 void error(char * messageText, char sender){
 	message message;
 	memcpy(message+1,messageText,sizeof(messageText)-1);
 	message[0]=sender;
 	closeTrap();
-	msgQSend(mid_error,message,sizeof(message),NO_WAIT,MSG_PRI_NORMAL);
+	msgQSend(mid_actions,message,sizeof(message),NO_WAIT,MSG_PRI_NORMAL);
 }
 void info(char * messageText){
 	message message;
