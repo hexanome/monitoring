@@ -12,16 +12,14 @@ function readmessage(buffer) {
         message = buffer.slice((8+32)/8, size).toString();
   } catch (e) {
     console.log('PROTOCOL: ERROR: buffer not read properly',
-        'while reading message ' + buffer.toString());
+        'while reading message ' + buffer.inspect());
   }
   return {type:type, size:size, message:message};
 }
 
 // Reading messages.
 
-function cca(c) {
-  return c.charCodeAt(0);
-}
+function cca(c) { return c.charCodeAt(0); }
 
 // `nbparts` is the number of part types.
 function craftinit(nbparts) {
