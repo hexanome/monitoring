@@ -44,6 +44,7 @@ function writelog(msg, iserror) {
 
 var logger = Scout.send(function(q) {
   q.action = 'log';
+  q.method = 'GET';
   q.resp = function(resp) {
     writelog(resp.message, resp.type === 'e');
     logger();
