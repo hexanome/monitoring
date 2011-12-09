@@ -47,7 +47,7 @@ static void initialisation()
 	mid_packaging  	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
 											//4 byte per msg max, and msgs filled up in fifo order
 	mid_batch 	 	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-											//4 byte per msg max, and msgs filled up in fifo order					
+	mid_error 	 	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
 	
 	/*Creation des taches*/
 	tid_boxing         = taskSpawn("boxing",     					 /* name of new task (stored at pStackBase) */
@@ -138,17 +138,14 @@ static int createsocket()
 
 void error(char * messageText, char sender){
 	message message;
-	memcpy(message+2,messageText,sizeof(messageText)-2);
-	message[0]='e';
-	message[1]=sender;
+	memcpy(message+1,messageText,sizeof(messageText)-1);
+	message[0]=sender;
 	closeTrap();
-	msgQSend(mid_log,message,sizeof(message),NO_WAIT,MSG_PRI_URGENT);
-	taskResume(tid_main);
+	msgQSend(mid_error,message,sizeof(message),NO_WAIT,MSG_PRI_NORMAL);
 }
 void info(char * messageText){
 	message message;
-	memcpy(message+2,messageText,sizeof(messageText)-2);
-	message[0]='i';
-	message[1]=' ';
+	memcpy(message+1,messageText,sizeof(messageText)-1);
+	message[0]=' ';
 	msgQSend(mid_log,message,sizeof(message),NO_WAIT,MSG_PRI_NORMAL);
 }
