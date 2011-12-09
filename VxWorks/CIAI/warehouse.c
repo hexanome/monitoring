@@ -1,8 +1,10 @@
 #include "warehouse.h"
 
 // récupère un nombre dans un message
-int getNumber(int start; int size)
+int getNumber(int start, int size)
 {
+	int i = 0; // utilisé dans une boucle for
+	
 	for (i = start; i < (start + size - 1); i++)
 			{
 				num += (int) package[i];
