@@ -16,6 +16,8 @@
 #include "read.h"	 	/* Interface de la tache Lire			 */
 #include "writefile.h"  /* Interface de la tache Ecrire			 */
 #include "writesocket.h"/* Interface de la tache Ecrire			 */
+#include "devices.h"
+#include "defs.h"
 
 static void initialisation()
 {
@@ -45,7 +47,7 @@ static void initialisation()
 	mid_packaging  	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
 											//4 byte per msg max, and msgs filled up in fifo order
 	mid_batch 	 	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
-											//4 byte per msg max, and msgs filled up in fifo order					
+	mid_error 	 	  = msgQCreate(10,4,0); //Create a msg queue with 10 msg max,
 	
 	/*Creation des taches*/
 	tid_boxing         = taskSpawn("boxing",     					 /* name of new task (stored at pStackBase) */
@@ -132,4 +134,18 @@ static int createsocket()
 	listen(sock, 1);
 	// Complete connection between sockets
 	accept(sock, (struct sockaddr *) &clientAddr, &sockAddrSize);
+}
+
+void error(char * messageText, char sender){
+	message message;
+	memcpy(message+1,messageText,sizeof(messageText)-1);
+	message[0]=sender;
+	closeTrap();
+	msgQSend(mid_error,message,sizeof(message),NO_WAIT,MSG_PRI_NORMAL);
+}
+void info(char * messageText){
+	message message;
+	memcpy(message+1,messageText,sizeof(messageText)-1);
+	message[0]=' ';
+	msgQSend(mid_log,message,sizeof(message),NO_WAIT,MSG_PRI_NORMAL);
 }

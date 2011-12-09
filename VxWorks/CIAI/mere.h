@@ -13,6 +13,7 @@ MSG_Q_ID mid_received_part;
 MSG_Q_ID mid_log;
 MSG_Q_ID mid_packaging;
 MSG_Q_ID mid_batch;
+MSG_Q_ID mid_error;
 
 // Tasks ID
 int tid_boxing;
@@ -36,5 +37,6 @@ SEM_ID sid_recover;
 // Functions declarations
 int main();
 static int createsocket();
-
+void error(char * message, char sender);
+void info(char * message);
 #endif
