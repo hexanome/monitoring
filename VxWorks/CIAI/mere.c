@@ -136,11 +136,11 @@ static int createsocket()
 	accept(sock, (struct sockaddr *) &clientAddr, &sockAddrSize);
 }
 
-void error(char * messageText){
+void error(char * messageText, char sender){
 	message message;
 	memcpy(message+2,messageText,sizeof(messageText)-2);
 	message[0]='e';
-	message[1]='b';
+	message[1]=sender;
 	closeTrap();
 	msgQSend(mid_log,message,sizeof(message),NO_WAIT,MSG_PRI_URGENT);
 	taskResume(tid_main);
