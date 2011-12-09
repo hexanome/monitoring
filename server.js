@@ -18,14 +18,15 @@ socket.on('connect', function() {
 
   // Listen to incoming data
   socket.on('data', function(data) {
-    // TODO notify the client
     var message = protocol.readmessage(data);
     console.log('DATA: %s%s',
       message.type === 'e'? '[error] ': '', message.message);
-    camp.Server.emit('log', message);
+    camp.Server.emit('gotlog', message);
   });
 
   // All camp actions are defined here.
+
+  camp.add('log', function() {}, function gotlog(log) {return log;});
 
   camp.add('init', function(data) {
     console.log('INIT');
@@ -40,11 +41,9 @@ socket.on('connect', function() {
   });
 
   camp.add('go', function(data) {
-    console.log('GO message'); // TODO
+    console.log('GO message');
     socket.write(protocol.craftanswer('c'));
   });
-
-  camp.add('log', function() {}, function gotlog(log) {return log;});
 });
 
 // Connect to remote system
