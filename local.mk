@@ -4,4 +4,4 @@ default: sim debug
 
 sim:
 	@echo "vxworks sim"
-	@node vxworks.js &
+	@node vxworks.js > sim.log &
