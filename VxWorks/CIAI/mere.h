@@ -13,7 +13,7 @@ MSG_Q_ID mid_received_part;
 MSG_Q_ID mid_log;
 MSG_Q_ID mid_packaging;
 MSG_Q_ID mid_batch;
-MSG_Q_ID mid_error;
+MSG_Q_ID mid_actions;
 
 // Tasks ID
 int tid_boxing;
