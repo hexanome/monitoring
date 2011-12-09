@@ -6,9 +6,14 @@
 // Sending messages.
 
 function readmessage(buffer) {
-  var type = buffer.readUInt8(0).toString(),
-      size = +buffer.readUInt32BE(1, true),
-      message = buffer.slice((8+32)/8, size).toString();
+  try {
+    var type = buffer.readUInt8(0).toString(),
+        size = +buffer.readUInt32BE(1, true),
+        message = buffer.slice((8+32)/8, size).toString();
+  } catch (e) {
+    console.log('PROTOCOL: ERROR: buffer not read properly',
+        'while reading message ' + buffer.toString());
+  }
   return {type:type, size:size, message:message};
 }
 
