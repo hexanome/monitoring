@@ -8,7 +8,6 @@
 #include "testBox.h"
 #include "defs.h"
 //TODO : Whatchdog 
-static void error(message message);
 
 int dummy(){
 	return 0;
@@ -57,8 +56,3 @@ int startBoxing(){
 	}
 }
 
-static void error(message message){
-	closeTrap();
-	msgQSend(mid_log,message,sizeof(message),NO_WAIT,MSG_PRI_URGENT);
-	taskResume(tid_main);
-}

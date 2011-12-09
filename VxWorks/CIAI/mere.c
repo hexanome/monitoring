@@ -16,6 +16,8 @@
 #include "read.h"	 	/* Interface de la tache Lire			 */
 #include "writefile.h"  /* Interface de la tache Ecrire			 */
 #include "writesocket.h"/* Interface de la tache Ecrire			 */
+#include "devices.h"
+#include "defs.h"
 
 static void initialisation()
 {
@@ -132,4 +134,21 @@ static int createsocket()
 	listen(sock, 1);
 	// Complete connection between sockets
 	accept(sock, (struct sockaddr *) &clientAddr, &sockAddrSize);
+}
+
+void error(char * messageText){
+	message message;
+	memcpy(message+2,messageText,sizeof(messageText)-2);
+	message[0]='e';
+	message[1]='b';
+	closeTrap();
+	msgQSend(mid_log,message,sizeof(message),NO_WAIT,MSG_PRI_URGENT);
+	taskResume(tid_main);
+}
+void info(char * messageText){
+	message message;
+	memcpy(message+2,messageText,sizeof(messageText)-2);
+	message[0]='i';
+	message[1]=' ';
+	msgQSend(mid_log,message,sizeof(message),NO_WAIT,MSG_PRI_NORMAL);
 }
