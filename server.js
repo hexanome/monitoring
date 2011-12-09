@@ -29,8 +29,8 @@ socket.on('connect', function() {
 
   camp.add('init', function(data) {
     console.log('INIT');
-    data.nbpart1 = data.nbpart1 || 10000;
-    data.nbpart2 = data.nbpart1 || 10000;
+    data.nbpart1 = data.nbpart1 || 20;
+    data.nbpart2 = data.nbpart1 || 20;
     socket.write(protocol.craftinit([data.nbpart1, data.nbpart2]));
   });
 

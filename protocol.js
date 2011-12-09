@@ -6,17 +6,20 @@
 // Sending messages.
 
 function readmessage(buffer) {
-  var type = buffer.readUInt8(0).toString(),
-      size = +buffer.readUInt32BE(1, true),
-      message = buffer.slice((8+32)/8, size).toString();
+  try {
+    var type = buffer.readUInt8(0).toString(),
+        size = +buffer.readUInt32BE(1, true),
+        message = buffer.slice((8+32)/8, size).toString();
+  } catch (e) {
+    console.log('PROTOCOL: ERROR: buffer not read properly',
+        'while reading message ' + buffer.inspect());
+  }
   return {type:type, size:size, message:message};
 }
 
 // Reading messages.
 
-function cca(c) {
-  return c.charCodeAt(0);
-}
+function cca(c) { return c.charCodeAt(0); }
 
 // `nbparts` is the number of part types.
 function craftinit(nbparts) {
@@ -36,24 +39,18 @@ function craftanswer(choice) {
   return buf;
 }
 
-// Commands must be a list of objects of the form
+// A command has the following parameters, per the spec:
 //
 //     numCommand:Number
-//     part_type:String (of one char)
-//     part_number:Number
-//
-// `send` :: function (buffer) { do something with it }
-function craftcommand(commands, send) {
-  var len = commands.length;
-  for (var i = 0; len > i; i++) {
-    var buf = new Buffer((8+32+8+32+16)/8);
-    buf[0] = cca('c');
-    buf.writeUInt32BE(commands[i].numCommand, 1);
-    buf[(8+32)/8] = cca(commands[i].part_type);
-    buf.writeUInt32BE(commands[i].part_number, (8+32+8)/8);
-    buf.writeUInt16BE(len, (8+32+8+32)/8);
-    send(buf);
-  }
+//     nbPalette1:Number
+//     nbPalette2:Number
+function craftcommand(numcomm, nbpal1, nbpal2) {
+  var buf = new Buffer((8+32+32+32)/8);
+  buf[0] = cca('c');
+  buf.writeUInt32BE(numcomm, 1);
+  buf.writeUInt32BE(nbpal1, (8+32)/8);
+  buf.writeUInt32BE(nbpal2, (8+32+32)/8);
+  return buf;
 }
 
 

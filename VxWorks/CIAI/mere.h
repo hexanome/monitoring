@@ -36,5 +36,6 @@ SEM_ID sid_recover;
 // Functions declarations
 int main();
 static int createsocket();
-
+void error(char * message, char sender);
+void info(char * message);
 #endif
