@@ -13,7 +13,10 @@ La taille indiquée est celle du message seulement.
 
 ### type: 'i' init
 
-    [type:char][nb_part1:uint32][nb_part2:uint32]
+    [type:char][nbPalette1:uint32][nbPalette2:uint32]
+
+- nbPalette1: nombre de palettes de type 1.
+- nbPalette2: nombre de palettes de type 2.
 
 ### type: 'c' command
 
