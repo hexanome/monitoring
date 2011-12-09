@@ -1,13 +1,13 @@
-## Server to Client
+## Serveur → Client
 
     [type:char][size:uint32][message:buffer(size)]
 
-The size indicated is that of the message only.
+La taille indiquée est celle du message seulement.
 
 - 'i': info
 - 'e': error
 
-## Client to Server
+## Client → Serveur
 
     [type:char][more data according to type…]
 
@@ -17,12 +17,11 @@ The size indicated is that of the message only.
 
 ### type: 'c' command
 
-    [type:char][numCommande:uint32][part_type:char][part_number:uint32][part_number_dif:int16]
+    [type:char][numCommande:uint32][nbPalette1:uint32][nbPalette2:uint32]
 
 - numCommande: numéro de la commande
-- part\_type: 1, 2 (ou autre)
-- part\_number: nombre de pièce de type part\_type
-- part\_number\_dif: nombre de palettes différentes dans la commande
+- nbPalette1: nombre de palettes de type 1.
+- nbPalette2: nombre de palettes de type 2.
 
 ### type: 'a' answer
 
