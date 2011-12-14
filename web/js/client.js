@@ -21,9 +21,15 @@ addEventListener('load', function createactions() {
 // - init
 
 function makeop(action) {
-  Scout('#' + action).on('click', function(q) {
+  Scout.maker()('#' + action).on('click', function(q) {
     q.action = action;
-    q.method = 'GET';
+    if (action === 'init') {
+      q.data = {
+        nbpart1: Scout('#nbpart1').value,
+        nbpart2: Scout('#nbpart2').value
+      };
+    }
+    console.log(q.data);
     q.resp = function(resp) { console.log(action + '-ed'); };
     q.error = function(err) { console.error(err); };
   });
@@ -44,7 +50,6 @@ function writelog(msg, iserror) {
 
 var logger = Scout.send(function(q) {
   q.action = 'log';
-  q.method = 'GET';
   q.resp = function(resp) {
     writelog(resp.message, resp.type === 'e');
     logger();

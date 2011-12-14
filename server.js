@@ -29,9 +29,9 @@ socket.on('connect', function() {
   camp.add('log', function() {}, function gotlog(log) {return log;});
 
   camp.add('init', function(data) {
-    console.log('INIT');
-    data.nbpart1 = data.nbpart1 || 20;
-    data.nbpart2 = data.nbpart1 || 20;
+    console.log('INIT nbpart1:' + data.nbpart1, 'nbpart2:' + data.nbpart2);
+    data.nbpart1 = +data.nbpart1 || 20;
+    data.nbpart2 = +data.nbpart1 || 20;
     socket.write(protocol.craftinit([data.nbpart1, data.nbpart2]));
   });
 
@@ -47,7 +47,7 @@ socket.on('connect', function() {
 });
 
 // Connect to remote system
-socket.connect(1337); // TODO
+socket.connect(1337);
 
 // Web server options
 var options = {
