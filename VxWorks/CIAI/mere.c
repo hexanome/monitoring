@@ -16,7 +16,7 @@
 #include "read.h"	 	/* Interface de la tache Lire			 */
 #include "writefile.h"  /* Interface de la tache Ecrire			 */
 #include "writesocket.h"/* Interface de la tache Ecrire			 */
-#include "devices.h"
+#include "usine.h"
 #include "defs.h"
 
 static void initialisation()
@@ -52,42 +52,42 @@ static void initialisation()
 	/*Creation des taches*/
 	tid_boxing         = taskSpawn("boxing",     					 /* name of new task (stored at pStackBase) */
 							  20,                                    /* priority of new task */
-							  0x0008,                                /* task option word */
+							  0,                                /* task option word */
 							  10000,                                 /* size (bytes) of stack needed plus name */
 							  (FUNCPTR) startBoxing,		         /* entry point of new task */
 							  0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 							  );
 	tid_packaging      = taskSpawn("packaging",     				 /* name of new task (stored at pStackBase) */
 							  25,                                    /* priority of new task */
-							  0x0008,                                /* task option word */
+							  0,                                /* task option word */
 							  10000,                                 /* size (bytes) of stack needed plus name */
 							  (FUNCPTR) startPackaging,		         /* entry point of new task */
 							  0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 							  );
 	tid_warehouse      = taskSpawn("warehouse",     			     /* name of new task (stored at pStackBase) */
 							  30,                                    /* priority of new task */
-							  0x0008,                                /* task option word */
+							  0,                                /* task option word */
 							  10000,                                 /* size (bytes) of stack needed plus name */
 							  (FUNCPTR) startWarehouse,		         /* entry point of new task */
 							  0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 							  );
 	tid_writefile      = taskSpawn("writefile",     				 /* name of new task (stored at pStackBase) */
 							  40,                                    /* priority of new task */
-							  0x0008,                                /* task option word */
+							  0,                                /* task option word */
 							  10000,                                 /* size (bytes) of stack needed plus name */
 							  (FUNCPTR) startWriteFile,		         /* entry point of new task */
 							  0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 							  );
 	tid_writesocket    = taskSpawn("writesocket",     				 /* name of new task (stored at pStackBase) */
 							  40,                                    /* priority of new task */
-							  0x0008,                                /* task option word */
+							  0,                                /* task option word */
 							  10000,                                 /* size (bytes) of stack needed plus name */
 							  (FUNCPTR) startWriteSocket,		     /* entry point of new task */
 							  0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 							  );
 	tid_read           = taskSpawn("read",     						 /* name of new task (stored at pStackBase) */
 							  40,                                    /* priority of new task */
-							  0x0008,                                /* task option word */
+							  0,                                /* task option word */
 							  10000,                                 /* size (bytes) of stack needed plus name */
 							  (FUNCPTR) startRead,		             /* entry point of new task */
 							  0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -97,6 +97,8 @@ static void initialisation()
 static void moteur(){
 	message buff;
 	msgQReceive(mid_actions,buff,sizeof(buff),WAIT_FOREVER);
+	//log error : 
+	msgQSend(mid_log,buff,sizeof(message),NO_WAIT,MSG_PRI_URGENT);
 	switch (buff[0]){
 	case 'p':
 		//error in packaging, let's stop boxing and packaging :
