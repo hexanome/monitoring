@@ -11,7 +11,10 @@ void startWriteSocket()
 		//On attend un message de la boite aux letres "messages"
 		msgQReceive(mid_log ,erreur, sizeof (&erreur), WAIT_FOREVER);
 		
-		// On écrit sur la socket
+		// On ecrit sur la socket
 		write(sock, erreur, sizeof (erreur));
+		
+		// On rajoute le message dans la boite aux lettres "messages pour fichier"
+		msgQSend(mid_log_message, erreur, strlen(erreur), NO_WAIT, MSG_PRI_NORMAL);
 	}	
 }
