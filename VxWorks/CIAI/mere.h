@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include <msgQLib.h>
 
-#define SERVER_PORT_NUM 5001
-
 // MessagesQueues ID
 MSG_Q_ID mid_boxing_todo;
 MSG_Q_ID mid_boxing_done;
@@ -37,7 +35,6 @@ SEM_ID sid_recover;
 
 // Functions declarations
 int main();
-static int createsocket();
 void error(char * message, char sender);
 void info(char * message);
 #endif
