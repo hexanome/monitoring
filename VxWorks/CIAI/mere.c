@@ -10,12 +10,7 @@
 #include <string.h>
 /* GESTION TACHES */
 #include "mere.h"	/* Interface de mere */
-#include "boxing.h"	/* Interface de la tache Conditionnement */
-#include "packaging.h" 	/* Interface de la tache Mise en palette */
-#include "warehouse.h"	/* Interface de la tache Gestion entrepot*/
-#include "read.h"	/* Interface de la tache Lire */
-#include "writefile.h"  /* Interface de la tache Ecrire Socket	*/
-#include "writesocket.h"/* Interface de la tache Ecrire	Fichier*/
+#include "tasks.h"	/* Interface de la tache Conditionnement */
 #include "usine.h"
 #include "defs.h"
 

@@ -4,7 +4,6 @@
 #include <usrLib.h>
 #include <time.h>
 #include <stdio.h>
-#include "boxing.h"
 #include "usine.h"
 #include "mere.h"
 #include "defs.h"

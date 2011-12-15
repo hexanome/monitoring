@@ -22,6 +22,13 @@ static int partProdTid=0;
 static void startPartProd(int type);
 #endif
 
+int plastic(){
+	int ret;
+	semTake(semBadPlastic,WAIT_FOREVER);
+	ret=badPlastic;
+	semGive(semBadPlastic);
+	return ret;
+}
 int getPrinterStatus(){
 	int ret=0;
 	semMTake(semBadPrinter,WAIT_FOREVER);

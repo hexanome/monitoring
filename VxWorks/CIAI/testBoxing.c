@@ -6,7 +6,7 @@
 #include "usine.h"
 #include "defs.h"
 #include "mere.h"
-#include "boxing.h"
+#include "tasks.h"
 
 int testBoxing(){
 #ifdef test

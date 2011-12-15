@@ -2,6 +2,7 @@
 #define _DEFS_H
  
 #define MAX_BAD_PARTS 10
+#define SERVER_PORT_NUM 5001
 #define PARTPERBOX 10
 #define BOXPERPACK 20
 typedef struct{
