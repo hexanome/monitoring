@@ -12,7 +12,9 @@ void startRead(){
 	int nbPack2;
 	message answer;
 	int batchNumber=0;
+	int commandNumber=0;
 	batch toDo;
+	pack toGet;
 	for (;;)
 	{	
 		//First read the message type :
@@ -40,8 +42,7 @@ void startRead(){
 #endif
 			read(sock,(char*)&nbPack1,sizeof(int));
 			read(sock,(char*)&nbPack2,sizeof(int));
-			toDo.batchNumber=++batchNumber;
-			toDo.batchType=PROD;
+			toDo.batchNumber=batchNumber++;
 			toDo.nbPack1=nbPack1;
 			toDo.nbPack2=nbPack2;
 			msgQSend(mid_batch,(char*)&toDo,sizeof(toDo),WAIT_FOREVER,MSG_PRI_NORMAL);
@@ -53,10 +54,10 @@ void startRead(){
 #endif
 			read(sock,(char*)&nbPack1,sizeof(int));
 			read(sock,(char*)&nbPack2,sizeof(int));
-			toDo.batchNumber=0;
-			toDo.batchType=ORDER;
-			toDo.nbPack1=nbPack1;
-			toDo.nbPack2=nbPack2;
+			toGet.number=commandNumber++;
+			toGet.size=0;
+			toGet.nbType1=-1*nbPack1;
+			toGet.nbType2=-1*nbPack2;
 			msgQSend(mid_packaging,(char*)&toDo,sizeof(toDo),WAIT_FOREVER,MSG_PRI_URGENT);
 			//Message urgent because we don't want to wait for all the incomming 
 			//packs to be handled by the warehouse before they handle incomming orders
