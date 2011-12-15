@@ -16,6 +16,10 @@ int startPackaging()
 	for(;;){
     	//Read from mid_batch to see what we have to produce.
     	msgQReceive(mid_batch,(char*)&toDo,sizeof(message),WAIT_FOREVER);
+#ifdef test
+    	printf("Packaging : orders received, batch number : %d, type 1 packs : %d, type 2 packs : %d\n",\
+    			toDo.batchNumber,toDo.nbPack1,toDo.nbPack2);
+#endif 
     	done.number=toDo.batchNumber;
     	done.size=BOXPERPACK; //the number of box per pack is fixed at build time
     	
@@ -27,6 +31,10 @@ int startPackaging()
         	nextBoxesTodo.batchNumber=toDo.batchNumber;
         	nextBoxesTodo.size=PARTPERBOX;
         	msgQSend(mid_boxing_todo,(char*)&nextBoxesTodo,sizeof(box),WAIT_FOREVER,MSG_PRI_NORMAL);
+#ifdef test
+    	printf("Packaging : orders sent to boxing, produce %d type 1 boxes.\n",\
+    			nextBoxesTodo.boxNumber);
+#endif 
     	}
     	//Create all type 2 packs
     	if (toDo.nbPack2!=0){
@@ -35,6 +43,10 @@ int startPackaging()
         	nextBoxesTodo.batchNumber=toDo.batchNumber;
         	nextBoxesTodo.size=PARTPERBOX;
         	msgQSend(mid_boxing_todo,(char*)&nextBoxesTodo,sizeof(box),WAIT_FOREVER,MSG_PRI_NORMAL);
+#ifdef test
+    	printf("Packaging : orders sent to boxing, produce %d type 2 boxes.\n",\
+    			nextBoxesTodo.boxNumber);
+#endif 
     	}
     	//Get all type 1 parts
     	done.nbType1=1;
@@ -59,6 +71,10 @@ int startPackaging()
     		info(log);
     		//Send it to the warehouse :
     		msgQSend(mid_packaging,(char*)&done,sizeof(done),WAIT_FOREVER,MSG_PRI_NORMAL);
+#ifdef test
+    	printf("Packaging : finished pack number %d sent to warehouse.\n",\
+    			pack1Done);
+#endif 
     	}
     	
     	//Get all type 2 parts
@@ -83,6 +99,10 @@ int startPackaging()
     				done.number,BOXPERPACK, done.nbType1);
     		info(log);
     		//Send it to the warehouse :
+#ifdef test
+    	printf("Packaging : finished pack number %d sent to warehouse.\n",\
+    			pack2Done);
+#endif 
     		msgQSend(mid_packaging,(char*)&done,sizeof(done),WAIT_FOREVER,MSG_PRI_NORMAL);
     	}
 	}

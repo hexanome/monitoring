@@ -26,14 +26,15 @@ int startBoxing(){
 	for(;;){
 		//See what kind of box we have to fill :
 #ifdef test
-		printf("Waiting for orders.\n");
+		printf("Boxing : Waiting for orders.\n");
 #endif
 		if (msgQReceive(mid_boxing_todo,(char*)&toFill,sizeof(toFill),WAIT_FOREVER==-1)){
 			printErrno(errnoGet());
 			return -1;
 		}
 #ifdef test
-		printf("Orders received.\n");
+		printf("Boxing : Orders received, %d type %d boxes to do\n",\
+				toFill.boxNumber,toFill.partsType);
 #endif
 		for(boxNumber=0; boxNumber<toFill.boxNumber;boxNumber++){
 			//Loop until all the boxes are done, then get new orders.
@@ -49,7 +50,7 @@ int startBoxing(){
         			return -1;
     			}
 #ifdef test
-        		printf("Part received\n");
+        		printf("Boxing : Type %d part received\n",newPart.type);
 #endif
     			if (isBoxPresent()!=0){
     				//Error no box available
@@ -78,6 +79,10 @@ int startBoxing(){
     		sprintf(log,"Log : Box filled up in batch %d, %d pieces of type %d, %d bad pieces were detected",\
     				filled.batchNumber,filled.partsNb, filled.partsType, filled.badParts);
     		info(log);
+#ifdef test
+    	printf("Boxing : finished box number %d sent to pckaging.\n",\
+    			filled.boxNumber);
+#endif 
     		if(msgQSend(mid_boxing_done,(char*)&filled,sizeof(filled),NO_WAIT,MSG_PRI_NORMAL)==-1){
     			printErrno(errnoGet());
     			return -1;
