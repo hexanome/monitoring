@@ -47,8 +47,7 @@ socket.on('connect', function() {
 
   camp.add('comm', function(data) {
     console.log('COMM');
-    socket.write(protocol.craftcommand(data.commnum,
-        data.nbpart1, data.nbpart2));
+    socket.write(protocol.craftcommand(data.nbpart1, data.nbpart2));
   });
 });
 

@@ -33,7 +33,6 @@ function makeop(action) {
       q.data = {
         nbpart1: +Scout('#commpal1').value,
         nbpart2: +Scout('#commpal2').value,
-        commnum: +Scout('#commnum').value
       };
     }
     console.log(q.data);
