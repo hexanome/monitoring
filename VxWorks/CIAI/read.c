@@ -1,7 +1,13 @@
+/**
+ * tâche conste à recevoir et à traiter les commandes reçu par le superviseur
+ */
+
 #include "read.h"
 
-/* Cette tache consiste �� traiter les messages re�u par le client */
 
+/**
+ * traitement des commandes reçus
+ */
 void handlingMessage(char* replyBuf){
 	char type;
 	type =)replyBuf[0];
@@ -23,6 +29,9 @@ void handlingMessage(char* replyBuf){
 	}	
 } // handlingMessage()
 
+/**
+ * reçoit les commandes envoyer par le superviseur et faire appele à la fonction de traitement
+ */
 void startRead(){	
 	for (;;)
 	{	
