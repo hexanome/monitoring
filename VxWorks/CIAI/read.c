@@ -1,41 +1,66 @@
-/**
- * tâche conste à recevoir et à traiter les commandes reçu par le superviseur
- */
-#include "read.h"
+#include <sockLib.h>
+#include <strLib.h>
+#include <taskLib.h>
+#include "mere.h"
+#include "defs.h"
+#include "usine.h"
 
-/**
- * traitement des commandes reçus
- */
-void handlingMessage(char* replyBuf){
-	char type;
-	type =replyBuf[0];
-	switch(type){
-	case 'i': 
-		// On rajoute un message dans la boite aux lettres lots = mid_batch
-		msgQSend(mid_batch, replyBuf, strlen(replyBuf), NO_WAIT, MSG_PRI_NORMAL);
-		break;
-	case 'c':
-		// On rajoute un message dans la boite aux lettres palettes finis = mid_boxing_done
-		msgQSend(mid_boxing_done, replyBuf, strlen(replyBuf), NO_WAIT, MSG_PRI_NORMAL);
-		break;
-	case 'a':
-		// On inscrit la r�ponse dans le s�maphore M
-		// TODO
-		// On r�active la tache m�re
-		taskResume(tid_main);
-		break;
-	}	
-} // handlingMessage()
 
-/**
- * reçoit les commandes envoyer par le superviseur et faire appele à la fonction de traitement
- */
 void startRead(){	
+	char type;	
+	int nbPack1;
+	int nbPack2;
+	message answer;
+	int batchNumber=0;
+	batch toDo;
 	for (;;)
 	{	
-		char * replyBuf;		
-		read(sock, replyBuf, 0);
-
-		handlingMessage(replyBuf);
+		//First read the message type :
+		read(sock, &type, sizeof(char));
+		switch(type){
+		case 'a':
+#ifdef test
+			printf("reveived a start/stop command");
+#endif
+			//answer
+			read(sock,answer,sizeof(char));//get answer type
+			//send it to mere.
+			if (answer[0]=='s')
+			{
+    			sprintf(answer+1,"Terminating application");
+			}else{
+				sprintf(answer+1,"Restarting application");
+			}
+			msgQSend(mid_actions,answer,sizeof(message),WAIT_FOREVER,MSG_PRI_URGENT);
+			break;
+		case 'i':
+			//Init
+#ifdef test
+			printf("reveived an init command");
+#endif
+			read(sock,(char*)&nbPack1,sizeof(int));
+			read(sock,(char*)&nbPack2,sizeof(int));
+			toDo.batchNumber=++batchNumber;
+			toDo.batchType=PROD;
+			toDo.nbPack1=nbPack1;
+			toDo.nbPack2=nbPack2;
+			msgQSend(mid_batch,(char*)&toDo,sizeof(toDo),WAIT_FOREVER,MSG_PRI_NORMAL);
+			break;
+		case 'c':
+			//command
+#ifdef test
+			printf("reveived an order command");
+#endif
+			read(sock,(char*)&nbPack1,sizeof(int));
+			read(sock,(char*)&nbPack2,sizeof(int));
+			toDo.batchNumber=0;
+			toDo.batchType=ORDER;
+			toDo.nbPack1=nbPack1;
+			toDo.nbPack2=nbPack2;
+			msgQSend(mid_packaging,(char*)&toDo,sizeof(toDo),WAIT_FOREVER,MSG_PRI_URGENT);
+			//Message urgent because we don't want to wait for all the incomming 
+			//packs to be handled by the warehouse before they handle incomming orders
+			break;
+		}
 	}
 }

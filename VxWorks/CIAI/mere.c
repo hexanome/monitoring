@@ -19,6 +19,8 @@
 #include "usine.h"
 #include "defs.h"
 
+static int stopped=0;
+static void destruction();
 static void initialisation()
 {
 	tid_main = taskIdSelf();
@@ -104,10 +106,29 @@ static void moteur(){
 	switch (buff[0]){
 	case 'p':
 		//error in packaging, let's stop boxing and packaging :
+		closeTrap();
 		taskSuspend(tid_packaging);
+		taskSuspend(tid_boxing);
+		stopped=1;
+		break;
 	case 'b':
 		//error in boxing, let's stop it :
+		closeTrap();
 		taskSuspend(tid_boxing);
+		stopped=1;
+		break;
+	case 'c':
+		//test if we're stoped, and if we are, start.
+		if (stopped==0){break;}
+		taskResume(tid_packaging);
+		taskResume(tid_boxing);
+		stopped=0;
+		openTrap();
+		break;
+	case 's':
+		//test if we're stopped, and if we are terminate app.
+		if (stopped==0){break;}
+		return;
 		break;
 	}
 }
@@ -115,17 +136,34 @@ static void moteur(){
 static void destruction()
 {
 	/* Fermeture du fichier */
+	closeTrap();
+	taskDelete(tid_boxing);
+	taskDelete(tid_packaging);
+	taskDelete(tid_read);
+	taskDelete(tid_warehouse);
+	taskDelete(tid_writefile);
+	taskDelete(tid_writesocket);
+	semDelete(sid_recover);
+	msgQDelete(mid_actions);
+	msgQDelete(mid_batch);
+	msgQDelete(mid_boxing_done);
+	msgQDelete(mid_boxing_todo);
+	msgQDelete(mid_log);
+	msgQDelete(mid_log_file);
+	msgQDelete(mid_packaging);
+	msgQDelete(mid_received_part);
 	fclose(message_file);
-	/* TO DO */
+	close(sock);
+#ifdef test
 	printf("Fin de tache\n");
+#endif
 	exit(0); /*auto-destruction*/
 }
 
 int main(int argc, char * argv[])
 {
 	initialisation();
-	taskSuspend(0);
-	//moteur();
+	moteur();
 	destruction();
 	return 0;
 }

@@ -1,7 +1,6 @@
-#include <sockLib.h>
-#include <strLib.h>
-#include <taskLib.h>
-#include "mere.h"
+#ifndef __READ_H
+#define __READ_H
 
-void handlingMessage(char* replyBuf);
 void startRead();
+
+#endif
