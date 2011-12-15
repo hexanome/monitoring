@@ -1,10 +1,10 @@
 #include "read.h"
 
-/* Cette tache consiste à  traiter les messages reçu par le client */
+/* Cette tache consiste ï¿½ï¿½ traiter les messages reï¿½u par le client */
 
 void handlingMessage(char* replyBuf){
-	int type;
-	type = (int)replyBuf[0];
+	char type;
+	type =)replyBuf[0];
 	switch(type){
 	case 'i': 
 		// On rajoute un message dans la boite aux lettres lots = mid_packaging
@@ -15,9 +15,9 @@ void handlingMessage(char* replyBuf){
 		msgQSend(mid_boxing_done, replyBuf, strlen(replyBuf), NO_WAIT, MSG_PRI_NORMAL);
 		break;
 	case 'a':
-		// On inscrit la réponse dans le sémaphore M
+		// On inscrit la rï¿½ponse dans le sï¿½maphore M
 		// TODO
-		// On réactive la tache mère
+		// On rï¿½active la tache mï¿½re
 		taskResume(tid_main);
 		break;
 	}	
