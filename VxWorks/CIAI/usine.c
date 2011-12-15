@@ -15,7 +15,10 @@ static int nextBadPack=0;
 static SEM_ID semBadPack;
 static int badPrinter=0;
 static SEM_ID semBadPrinter;
+#ifndef test
 static int partProdTid=0;
+static void startPartProd(int type);
+#endif
 
 int getPrinterStatus(){
 	int ret=0;
@@ -23,6 +26,12 @@ int getPrinterStatus(){
 	ret=badPrinter;
 	semGive(semBadPrinter);
 	return ret;
+}
+int print(int batchNb, int partsNb, int partsType, int timestamp){
+	char toPrint[140];
+	sprintf(toPrint ,"%d : Impression du lot no %d, contenant %d pieces, de type %d",\
+			timestamp, batchNb, partsNb, partsType);
+	return 0;
 }
 int isBoxPresent(){
 	int ret=0;
@@ -47,7 +56,11 @@ void openTrap(){
 	taskResume(partProdTid);
 }
 
+#ifndef test
 static void startPartProd(int type)
+#else
+void startPartProd(int type)
+#endif
 {
 	for (;;)
 	{

@@ -2,11 +2,15 @@
 #include <taskLib.h>
 #include <errnoLib.h>
 #include <usrLib.h>
+#include <time.h>
 #include <stdio.h>
 #include "boxing.h"
 #include "usine.h"
 #include "mere.h"
 #include "defs.h"
+#ifdef test
+	#include "testBoxing.h"
+#endif
 //TODO : Whatchdog 
 
 int dummy(){
@@ -14,8 +18,9 @@ int dummy(){
 }
 int startBoxing(){
 	for(;;){
-		box toFill = {0,0,0,0};
+		box toFill = {0,0,0,0}; //Create new empty box
 		part newPart = {0,0};
+		struct timespec timev;
 		//See what kind of box we have to fill :
 		if (msgQReceive(mid_boxing_todo,(char*)&toFill,sizeof(toFill),WAIT_FOREVER==-1)){
 			printErrno(errnoGet());
@@ -41,6 +46,8 @@ int startBoxing(){
 					error("Erreur : seuil maximal de mauvaises pieces atteint",'b');
 				}
 			}
+			clock_gettime(CLOCK_REALTIME, &timev);
+			print(toFill.batchNumber,toFill.partsNb,toFill.partsType,timev.tv_sec);
 		}
 		//Box has been filled.
 		//Is there a working printer?

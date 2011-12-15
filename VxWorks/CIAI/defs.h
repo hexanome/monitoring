@@ -12,6 +12,7 @@ typedef struct{
 	int partsType;
 	int partsNb;
 	int badParts;
+	int batchNumber;
 } box;
 
 typedef char message[140];
