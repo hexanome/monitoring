@@ -8,7 +8,7 @@
 // This is something of a main function.
 
 addEventListener('load', function createactions() {
-  ['stop', 'go', 'init'].forEach(function(act) {makeop(act);});
+  ['stop', 'go', 'init', 'comm'].forEach(function(act) {makeop(act);});
   log = Scout('#log');
   logger();
 }, false);
@@ -19,14 +19,20 @@ addEventListener('load', function createactions() {
 // - stop
 // - go
 // - init
+// - comm
 
 function makeop(action) {
   Scout.maker()('#' + action).on('click', function(q) {
     q.action = action;
     if (action === 'init') {
       q.data = {
-        nbpart1: Scout('#nbpart1').value,
-        nbpart2: Scout('#nbpart2').value
+        nbpart1: +Scout('#nbpart1').value,
+        nbpart2: +Scout('#nbpart2').value
+      };
+    } else if (action === 'comm') {
+      q.data = {
+        nbpart1: +Scout('#commpal1').value,
+        nbpart2: +Scout('#commpal2').value,
       };
     }
     console.log(q.data);

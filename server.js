@@ -30,9 +30,9 @@ socket.on('connect', function() {
 
   camp.add('init', function(data) {
     console.log('INIT nbpart1:' + data.nbpart1, 'nbpart2:' + data.nbpart2);
-    data.nbpart1 = +data.nbpart1 || 20;
-    data.nbpart2 = +data.nbpart1 || 20;
-    socket.write(protocol.craftinit([data.nbpart1, data.nbpart2]));
+    var nbpart1 = data.nbpart1 || 20,
+        nbpart2 = data.nbpart2 || 20;
+    socket.write(protocol.craftinit([nbpart1, nbpart2]));
   });
 
   camp.add('stop', function(data) {
@@ -41,8 +41,13 @@ socket.on('connect', function() {
   });
 
   camp.add('go', function(data) {
-    console.log('GO message');
+    console.log('GO');
     socket.write(protocol.craftanswer('c'));
+  });
+
+  camp.add('comm', function(data) {
+    console.log('COMM');
+    socket.write(protocol.craftcommand(data.nbpart1, data.nbpart2));
   });
 });
 

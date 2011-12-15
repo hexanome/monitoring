@@ -41,15 +41,13 @@ function craftanswer(choice) {
 
 // A command has the following parameters, per the spec:
 //
-//     numCommand:Number
 //     nbPalette1:Number
 //     nbPalette2:Number
-function craftcommand(numcomm, nbpal1, nbpal2) {
-  var buf = new Buffer((8+32+32+32)/8);
+function craftcommand(nbpal1, nbpal2) {
+  var buf = new Buffer((8+32+32)/8);
   buf[0] = cca('c');
-  buf.writeUInt32BE(numcomm, 1);
-  buf.writeUInt32BE(nbpal1, (8+32)/8);
-  buf.writeUInt32BE(nbpal2, (8+32+32)/8);
+  buf.writeUInt32BE(nbpal1, (8)/8);
+  buf.writeUInt32BE(nbpal2, (8+32)/8);
   return buf;
 }
 

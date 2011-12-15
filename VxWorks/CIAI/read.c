@@ -1,10 +1,14 @@
+/**
+ * tÃ¢che conste Ã  recevoir et Ã  traiter les commandes reÃ§u par le superviseur
+ */
 #include "read.h"
 
-/* Cette tache consiste à  traiter les messages reçu par le client */
-
+/**
+ * traitement des commandes reÃ§us
+ */
 void handlingMessage(char* replyBuf){
-	int type;
-	type = (int)replyBuf[0];
+	char type;
+	type =replyBuf[0];
 	switch(type){
 	case 'i': 
 		// On rajoute un message dans la boite aux lettres lots = mid_batch
@@ -15,26 +19,23 @@ void handlingMessage(char* replyBuf){
 		msgQSend(mid_boxing_done, replyBuf, strlen(replyBuf), NO_WAIT, MSG_PRI_NORMAL);
 		break;
 	case 'a':
-		// On inscrit la réponse dans le sémaphore M
+		// On inscrit la rï¿½ponse dans le sï¿½maphore M
 		// TODO
-		// On réactive la tache mère
+		// On rï¿½active la tache mï¿½re
 		taskResume(tid_main);
 		break;
 	}	
 } // handlingMessage()
 
+/**
+ * reÃ§oit les commandes envoyer par le superviseur et faire appele Ã  la fonction de traitement
+ */
 void startRead(){	
 	for (;;)
 	{	
 		char * replyBuf;		
-		//for(ioctl (sFd, FIONREAD,&byteAvailebal); ;ioctl (sFd, FIONREAD,&byteAvailebal))
-		//{
-		//if(0 == byteAvailebal)
-		//continue;
-		// Lire le contenu de la socket
 		read(sock, replyBuf, 0);
 
 		handlingMessage(replyBuf);
-		//	}
 	}
 }
