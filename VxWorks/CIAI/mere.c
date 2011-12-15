@@ -16,6 +16,10 @@
 
 static int stopped=0;
 static void destruction();
+
+#ifdef test
+void initialisation()
+#endif
 static void initialisation()
 {
 	tid_main = taskIdSelf();
