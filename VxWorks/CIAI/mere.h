@@ -11,6 +11,7 @@ MSG_Q_ID mid_boxing_todo;
 MSG_Q_ID mid_boxing_done;
 MSG_Q_ID mid_received_part;
 MSG_Q_ID mid_log;
+MSG_Q_ID mid_log_file;
 MSG_Q_ID mid_packaging;
 MSG_Q_ID mid_batch;
 MSG_Q_ID mid_actions;

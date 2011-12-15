@@ -1,11 +1,10 @@
-#include "warehouse.h"
 #include "defs.h"
+#include "mere.h"
+#include <strLib.h>
 #include <stdio.h>
 
-static int getNumber(int start, int size);
-
 // recupere un nombre dans un message
-int getNumber(int start, int size)
+static int getNumber(int start, int size)
 {
 	int num = 0; // variable int�rm�diaire utilis�e pour r�cup�rer les nombres dans les messages
 	message package; // message envoye par la boite aux lettres

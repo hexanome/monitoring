@@ -1,10 +1,9 @@
-#include <stdio.h>
-#include <sockLib.h>
-#include <msgQLib.h>
-#include <inetLib.h>
-#include <strLib.h>
-#include "mere.h"
+#ifndef __WRITESOCKET_H
+#define __WRITESOCKET_H
+
 
 #define SERVER_PORT_NUM 5001
 
 void startWriteSocket();
+
+#endif
