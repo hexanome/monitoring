@@ -1,16 +1,14 @@
 /**
  * tâche conste à recevoir et à traiter les commandes reçu par le superviseur
  */
-
 #include "read.h"
-
 
 /**
  * traitement des commandes reçus
  */
 void handlingMessage(char* replyBuf){
 	char type;
-	type =)replyBuf[0];
+	type =replyBuf[0];
 	switch(type){
 	case 'i': 
 		// On rajoute un message dans la boite aux lettres lots = mid_packaging
@@ -36,13 +34,7 @@ void startRead(){
 	for (;;)
 	{	
 		char * replyBuf;		
-		//for(ioctl (sFd, FIONREAD,&byteAvailebal); ;ioctl (sFd, FIONREAD,&byteAvailebal))
-		//{
-		//if(0 == byteAvailebal)
-		//continue;
-		// Lire le contenu de la socket
 		read(sock, replyBuf, 0);
 		handlingMessage(replyBuf);
-		//	}
 	}
 }
