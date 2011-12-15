@@ -1,6 +1,5 @@
 # Realtime monitoring system of a packaging line.
 
-
 # Start server :
 - create new vxworks kernel module project in workbench
 - configure workbench to create NAT network to connect to.
@@ -8,11 +7,12 @@
 - build and download module
 - run 'launchFactory' in VxWorks shell
 
-# Start client supervision :
-- make, then launch web browser on http://localhost
+# Start client supervision (Debian-based linux) :
+- If node.js is not installed : sudo apt-get install nodejs
+- sudo make, then launch web browser on http://localhost
 
 ## Systems
-- Monitoring computer (Windows)
+- Monitoring computer (Linux)
 - Packaging system (VxWorks)
 
 ## Network
