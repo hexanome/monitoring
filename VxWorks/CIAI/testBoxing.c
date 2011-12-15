@@ -5,7 +5,6 @@
 #include <errnoLib.h>
 #include "usine.h"
 #include "defs.h"
-//#include "mere.h"
 #include "tasks.h"
 
 int testBoxing(){
@@ -17,8 +16,7 @@ int testBoxing(){
 	MSG_Q_ID mid_boxing_done = msgQCreate(10,4,0); 
 	MSG_Q_ID mid_received_part = msgQCreate(10,4,0); 
 	printf("Starting conditionning");
-	startBoxing();
-	
+	taskSpawn("testBoxing",10,0,15000,(FUNCPTR)startBoxing,0,0,0,0,0,0,0,0,0,0);
 	printf("Asking for batch production : \n");
 	printf("\tBatchNumber=%d\n",toFill.batchNumber);
 	printf("\tBoxSize=%d\n",toFill.size);
