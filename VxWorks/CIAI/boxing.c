@@ -22,10 +22,16 @@ int startBoxing(){
 		part newPart = {0,0};
 		struct timespec timev;
 		//See what kind of box we have to fill :
+#ifdef test
+		printf("Waiting for orders.\n");
+#endif
 		if (msgQReceive(mid_boxing_todo,(char*)&toFill,sizeof(toFill),WAIT_FOREVER==-1)){
 			printErrno(errnoGet());
 			return -1;
 		}
+#ifdef test
+		printf("Orders received.\n");
+#endif
 		
 		for(toFill.partsNb=0; toFill.partsNb<toFill.size;){
 			//Wait until some message can be read
@@ -33,6 +39,9 @@ int startBoxing(){
     			printErrno(errnoGet());
     			return -1;
 			}
+#ifdef test
+    		printf("Part received\n");
+#endif
 			if (isBoxPresent()==0){
 				//Error no box available
 				error("Erreur : aucun carton disponible",'b');
