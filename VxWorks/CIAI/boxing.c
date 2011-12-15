@@ -12,7 +12,9 @@
 #endif
 //TODO : Whatchdog 
 
-int dummy(){
+int dummy(){ 
+//this is the entry point used when load to the simulator target
+//it allows us to start whichever function we want to be ran in the shell, at run time
 	return 0;
 }
 int startBoxing(){
