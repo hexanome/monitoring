@@ -7,7 +7,7 @@ void handlingMessage(char* replyBuf){
 	type = (int)replyBuf[0];
 	switch(type){
 	case 'i': 
-		// On rajoute un message dans la boite aux lettres lots = mid_packaging
+		// On rajoute un message dans la boite aux lettres lots = mid_batch
 		msgQSend(mid_batch, replyBuf, strlen(replyBuf), NO_WAIT, MSG_PRI_NORMAL);
 		break;
 	case 'c':
@@ -33,6 +33,7 @@ void startRead(){
 		//continue;
 		// Lire le contenu de la socket
 		read(sock, replyBuf, 0);
+
 		handlingMessage(replyBuf);
 		//	}
 	}
