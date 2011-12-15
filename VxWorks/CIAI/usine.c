@@ -9,6 +9,8 @@
 
 static int nextBadPart=0;
 static SEM_ID semBadPart;
+static int badPlastic=0;
+static SEM_ID semBadPlastic;
 static int nextBadBox=0;
 static SEM_ID semBadBox;
 static int nextBadPack=0;
@@ -82,21 +84,23 @@ int launchFatory()
 	int ret;
 	int tidMain=0;
 	semBadBox=semMCreate(0);
+	semBadPlastic=semMCreate(0);
 	semBadPack=semMCreate(0);
 	semBadPart=semMCreate(0);
 	semBadPrinter=semMCreate(0);
 	for (;;)
 	{
-		printf("1) Start type 1 part production\n");
-		printf("2) Start type 2 part production\n");
-		printf("3) Stop part production\n");
-		printf("4) Generate next part as a bad one\n");
-		printf("5) Prevent next box from spawning\n");
-		printf("6) Prevent next pack from spawning\n");
-		printf("7) Generate an emergency stop\n");
-		printf("8) Generate a printer problem\n");
-		printf("9) Start monitoring\n");
-		printf("10) Exit\n\n");
+		printf("1) Demarrer la production des pieces de type 1\n");
+		printf("2) Demarrerla production des pieces de type 2\n");
+		printf("3) Arreter la production de pieces\n");
+		printf("4) Generer une mauvaise piece\n");
+		printf("5) Empecher le prochain carton d'arriver\n");
+		printf("6) Empecher la prochaine palette d'arriver\n");
+		printf("7) Generer un arret d'urgence\n");
+		printf("8) Generer un probleme d'imprimante\n");
+		printf("9) Generer un probleme de pose de plastique\n");
+		printf("10) Lancer la surveillance du condionemment\n");
+		printf("11) Quitter\n\n");
 		
 		for (scanf("%d",&ret); ret<1 && ret>10; scanf("%d",&ret));
 		
@@ -105,54 +109,60 @@ int launchFatory()
 		case 1:
 			if (partProdTid!=0){break;}
 			partProdTid=taskSpawn("partProd1",5,0,10000,(FUNCPTR)startPartProd,1,0,0,0,0,0,0,0,0,0);
-			printf("Starting type 1 part production\n\n");
+			printf("Lancement de la production de pieces de type 1\n\n");
 			break;
 		case 2:
 			if (partProdTid!=0){break;}
 			partProdTid=taskSpawn("partProd2",5,0,10000,(FUNCPTR)startPartProd,2,0,0,0,0,0,0,0,0,0);
-			printf("Starting type 2 part production\n\n");
+			printf("Lancement de la production de pieces de type 2\n\n");
 			break;
 		case 3:
 			if (partProdTid==0){break;}
 			taskDelete(partProdTid);
 			partProdTid=0;
-			printf("Stoping part production\n\n");
+			printf("Arret de la production\n\n");
 			break;
 		case 4:
         	semMTake(semBadPart,WAIT_FOREVER);
 			nextBadPart=1;
         	semGive(semBadPart);
-			printf("Next part will be a bad one\n\n");
+			printf("La prochaine piece generee sera defecueuse\n\n");
 			break;
 		case 5:
         	semMTake(semBadBox,WAIT_FOREVER);
 			nextBadBox=1;
         	semGive(semBadBox);
-			printf("Next box won't be present\n\n");
+			printf("Le prochain carton ne sera pas la\n\n");
 			break;
 		case 6:
         	semMTake(semBadPack,WAIT_FOREVER);
 			nextBadPack=1;
         	semGive(semBadPack);
-			printf("Next pack won't be present\n\n");
+			printf("La prochaine palette ne sera pas la.\n\n");
 			break;
 		case 7:
-        	printf("Sending an emergency stop\n\n");
+        	printf("Envoi d'un arret d'urgence\n\n");
         	isrEmergencyStop();
 			break;
 		case 8:
         	semMTake(semBadPrinter,WAIT_FOREVER);
 			badPrinter=1;
         	semGive(semBadPrinter);
-			printf("Next printer status check call will return error\n\n");
+			printf("La prochaine impression echouera\n\n");
 			break;
 		case 9:
+			semTake(semBadPlastic,WAIT_FOREVER);
+			badPlastic=-1;
+			semGive(semBadPlastic);
+			printf("La prochaine pose de plastique sur une palette echouera\n\n");
+		case 10:
 			tidMain = taskSpawn("main",10,0,30000,(FUNCPTR)main,0,0,0,0,0,0,0,0,0,0);
 			break;
-		case 10:
+		case 11:
 			taskDelete(partProdTid);
 			taskDelete(tidMain);
 			semDelete(semBadBox);
+			semDelete(semBadPlastic);
 			semDelete(semBadPart);
 			semDelete(semBadPack);
 			semDelete(semBadPrinter);
