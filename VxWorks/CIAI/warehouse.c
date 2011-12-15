@@ -1,12 +1,14 @@
-#include "warehouse.h"
 #include "defs.h"
+#include "mere.h"
+#include <strLib.h>
 #include <stdio.h>
-// récupère un nombre dans un message
-int getNumber(int start, int size)
+
+// recupere un nombre dans un message
+static int getNumber(int start, int size)
 {
-	int num = 0; // variable intérmédiaire utilisée pour récupérer les nombres dans les messages
+	int num = 0; // variable intï¿½rmï¿½diaire utilisï¿½e pour rï¿½cupï¿½rer les nombres dans les messages
 	message package; // message envoye par la boite aux lettres
-	int i = 0; // utilisé dans une boucle for
+	int i = 0; // utilisï¿½ dans une boucle for
 	
 	for (i = start; i < (start + size - 1); i++)
 			{
@@ -20,11 +22,11 @@ int startWarehouse()
 {
 	int num_package_type1 = 0; // nombre de palettes de type 1 dans l'entrepot
 	int num_package_type2 = 0; // nombre de palettes de type 2 dans l'entrepot
-	int num_commande = -1; // le nuémro de la commande
-	int num = 0; // variable intérmédiaire utilisée pour récupérer les nombres dans les messages
+	int num_commande = -1; // le nuï¿½mro de la commande
+	int num = 0; // variable intï¿½rmï¿½diaire utilisï¿½e pour rï¿½cupï¿½rer les nombres dans les messages
 	message package; // message envoye par la boite aux lettres
-	char * message_commande = ""; // messages envoyé dans la boite aux lettres "messages"	
-	int i = 0; // utilisé dans une boucle for
+	char * message_commande = ""; // messages envoyï¿½ dans la boite aux lettres "messages"	
+	int i = 0; // utilisï¿½ dans une boucle for
 	
 	for (;;)
 	{
@@ -34,16 +36,16 @@ int startWarehouse()
 		// On regarde s'il s'agit d'une commande
 		if (package[0] == 'c')
 		{
-			// On récupère le numéro de la commande
+			// On rï¿½cupï¿½re le numï¿½ro de la commande
 			num_commande = getNumber(1, 4);
 
-			// On récupère le nombre de palette de type 1
+			// On rï¿½cupï¿½re le nombre de palette de type 1
 			num_package_type1 -= getNumber(5, 4);
 		
-			// On récupère le nombre de palette de type 2
+			// On rï¿½cupï¿½re le nombre de palette de type 2
 			num_package_type2 -= getNumber(9, 12);
 		
-			// si la commande est prête
+			// si la commande est prï¿½te
 			if ((num_package_type1 > -1)&(num_package_type2 > -1))
 			{
 				// On rajoute des messages dans la boite aux lettres "messages" = mid_log
@@ -51,7 +53,7 @@ int startWarehouse()
 				printf("%s\n",message_commande);
 				msgQSend(mid_log, message_commande, strlen(message_commande), NO_WAIT, MSG_PRI_NORMAL);
 			}
-			// si la commande n'est pas prëte
+			// si la commande n'est pas prï¿½te
 			else
 			{
 				// On rajoute des messages dans la boite aux lettres "messages" = mid_log
@@ -64,15 +66,15 @@ int startWarehouse()
 		// On regarde s'il s'agit d'une initialisation
 		if (package[0] == 'i')
 		{
-			// On récupère le nombre de palette de type 1
+			// On rï¿½cupï¿½re le nombre de palette de type 1
 			num_package_type1 += getNumber(1, 4);
 		
-			// On récupère le nombre de palette de type 2
+			// On rï¿½cupï¿½re le nombre de palette de type 2
 			num_package_type2 += getNumber(4, 4);
 			
 			// On rajoute un message dans la boite aux lettres "messages" = mid_log
-			sprintf(message_commande,"Initialisation : Nombre de palettes de type 1 à fabriquer : %d",num_package_type1);
-			sprintf(message_commande,"Initialisation : Nombre de palettes de type 2 à fabriquer : %d",num_package_type2);
+			sprintf(message_commande,"Initialisation : Nombre de palettes de type 1 ï¿½ fabriquer : %d",num_package_type1);
+			sprintf(message_commande,"Initialisation : Nombre de palettes de type 2 ï¿½ fabriquer : %d",num_package_type2);
 			msgQSend(mid_log, message_commande, strlen(message_commande), NO_WAIT, MSG_PRI_NORMAL);
 		}
 	}

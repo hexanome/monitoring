@@ -1,5 +1,6 @@
-#include <strLib.h>
-#include "mere.h"
+#ifndef __WAREHOUSE_H
+#define __WAREHOUSE_H
 
-int getNumber(int start, int size);
 int startWarehouse();
+
+#endif
