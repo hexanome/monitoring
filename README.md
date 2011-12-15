@@ -1,14 +1,14 @@
-Realtime monitoring system of a packaging line.
-===============================================
+# Realtime monitoring system of a packaging line.
 
-#Start server :
+
+# Start server :
 - create new vxworks kernel module project in workbench
 - configure workbench to create NAT network to connect to.
 - set/unset 'test' compilation variable
 - build and download module
 - run 'launchFactory' in VxWorks shell
 
-#Start client supervision :
+# Start client supervision :
 - make, then launch web browser on http://localhost
 
 ## Systems
