@@ -1,18 +1,23 @@
 var net = require('net');
 
 // Contains information about palette numbers.
-var nbpal1 = 20,
-    nbpal2 = 20;
+var vals = {
+  nbpal1: 20,
+  nbpal2: 20
+}
 
 net.Server(function(socket) {
   socket.on('data', function(buf){
+    console.log('RECV:',buf);
+
     // Read the first letter, behave accordingly.
     var action = buf[0];
     if (action === cca('i')) {
       // Init: set the number of palette of each type.
       console.log(buf);
-      nbpal1 = buf.readUInt32BE(1);
-      nbpal2 = buf.readUInt32BE((8+32)/8);
+      vals.nbpal1 = buf.readUInt32BE(1);
+      vals.nbpal2 = buf.readUInt32BE((8+32)/8);
+      console.log('INIT:',vals.nbpal1,vals.nbpal2);
     } else if (action === cca('a')) {
       // Answer
       var command = buf[1];
@@ -29,6 +34,7 @@ net.Server(function(socket) {
       var commnum = buf.readUInt32BE(1),
           nbpal1 = buf.readUInt32BE((8+32)/8),
           nbpal2 = buf.readUInt32BE((8+32+32)/8);
+      console.log('COMMAND:',nbpal1,nbpal2);
       socket.write(craftcommack(commnum, nbpal1, nbpal2));
     }
   });
@@ -48,6 +54,9 @@ net.Server(function(socket) {
 }).listen(1337);
 
 
+console.log('SIM started on port 1337');
+
+
 // Protocol primitives.
 //
 // We don't put these in protocol.js because this simulator should really be
@@ -58,10 +67,11 @@ function cca(c) { return c.charCodeAt(0); }
 // craftmessage creates the buffer for the message the simulator sends through
 // the socket.
 function craftmessage() {
+  console.log('CRAFTING',vals.nbpal1,vals.nbpal2);
   // We show the data about the number of palette 1 and 2 for
   // debugging purposes (both of init and of message transmission).
-  var pal1 = '' + nbpal1,
-      pal2 = '' + nbpal2,
+  var pal1 = '' + vals.nbpal1,
+      pal2 = '' + vals.nbpal2,
       intro1 = 'Number of palette of type 1: ',
       intro2 = '. Number of palette of type 2: ',
       msgsize = intro1.length + pal1.length + intro2.length + pal2.length,
