@@ -50,7 +50,7 @@ function htmlescape(msg) {
 }
 
 function writelog(msg, iserror) {
-  log.innerHTML += '<p' + (iserror? ' class="red"':'') + '>'
+  log.innerHTML += '<p class=' + (iserror? 'error':'info') + '>'
     + htmlescape(msg) + '</p>';
 }
 

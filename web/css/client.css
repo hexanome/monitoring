@@ -1,0 +1,28 @@
+.btn {
+  width: 100px !important;
+}
+.cell {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px;
+}
+article {
+  display: table-cell;
+  padding: 20px;
+}
+section {
+  padding: 10px;
+}
+#log {
+  width: 300px;
+  height: 500px;
+}
+p {
+  padding: 5px;
+  border-radius: 5px;
+}
+.error {
+  color: white;
+  font-weight: bold;
+  background: #f33;
+}

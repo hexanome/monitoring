@@ -1,27 +1,58 @@
 <!doctype html>
 <meta charset=utf-8>
 <title> Montitoring System </title>
-<h1> Monitoring System </h1>
 
-<section id=initsec>
-  <h1> Initialisez le syst&egrave;me </h1>
-  <label> Nombre de palettes de type 1: <input id=nbpart1></label><br>
-  <label> Nombre de palettes de type 2: <input id=nbpart2></label><br>
-  <input id=init type=button value=Initialiser>
-</section>
-<section id=stopsec>
-  <h1> Arr&ecirc;tez ou d&eacute;marrez le syst&egrave;me </h1>
-  <input id=stop type=button value=Arr&ecirc;t>
-  <input id=go type=button value=D&eacute;marrage>
-</section>
-<section id=commsec>
-  <h1> Passer une commande </h1>
-  <label> Nombre de palettes de type 1: <input id=commpal1></label><br>
-  <label> Nombre de palettes de type 2: <input id=commpal2></label><br>
-  <input id=comm type=button value=Commande>
-</section>
+<link rel=stylesheet href=http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css>
+<link rel=stylesheet href=css/client.css>
 
-<article id=log></article>
+<header class=topbar data-scrollspy=scrollspy>
+  <div class=topbar-inner>
+    <div class=container>
+      <a class=brand href='javascript:void(0)'>&nbsp;&#9881; Monitoring System &#9881;</a>
+      <a class=brand href='index.html' style='float:right'>&#x27f3;</a>
+      <!--
+      <ul class=nav>
+        <li class=active><a href='javascript:showControls()'>Controls</a></li>
+        <li><a href='javascript:showLogs()'>Logs</a></li>
+      </ul>
+      -->
+    </div>
+  </div>
+</header>
+
+<br><br><br>
+
+<article id=log>
+  <h2>Logs</h2>
+</article>
+
+<article>
+  <section id=initsec>
+    <h2> Initialiser le syst&egrave;me </h2>
+    <div class=cell>
+      <label>Palettes de type 1</label>&nbsp;<input id=nbpart1><br>
+      <label>Palettes de type 2</label>&nbsp;<input id=nbpart2>
+    </div>
+    <div class=cell>
+      <input id=init type=button value=Initialiser class='btn primary'>
+    </div>
+  </section>
+  <section id=commsec>
+    <h2> Passer une commande </h2>
+    <div class=cell>
+      <label>Palettes de type 1</label>&nbsp;<input id=commpal1><br>
+      <label>Palettes de type 2</label>&nbsp;<input id=commpal2><br>
+    </div>
+    <div class=cell>
+      <input id=comm type=button class='btn primary' value=Commander>
+    </div>
+  </section>
+  <section id=stopsec>
+    <h2> Arr&ecirc;ter ou reprendre le syst&egrave;me</h2>
+    <input id=stop type=button class='btn primary' value=Arr&ecirc;ter>&nbsp;
+    <input id=go type=button class='btn primary' value=Reprendre>
+  </section>
+</article>
 
 <script src=js/scout.js></script>
 <script src=js/es5.js></script>
