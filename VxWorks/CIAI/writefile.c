@@ -8,8 +8,8 @@ void startWriteFile()
 	// Boucle infini de la tache
 	for (;;)
 	{
-		//On attend un message de la boite aux letres "messages"
-		msgQReceive(mid_log ,erreur, sizeof (&erreur), WAIT_FOREVER);
+		// On attend un message de la boite aux letres "messages pour fichier"
+		msgQReceive(mid_log_file ,erreur, sizeof (&erreur), WAIT_FOREVER);
 			
 		// On rajoute le message d'erreur dans le fichier "messages"
 		fwrite (erreur, sizeof(char), strlen(erreur), message_file);	
