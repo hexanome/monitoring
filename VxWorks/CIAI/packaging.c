@@ -6,17 +6,18 @@
 
 int startPackaging()
 {
-	batch toDo;
-	pack done;
-	int pack1Done=0;
-	int pack2Done=0;
-	box nextBoxesTodo;
-	box lastDone;
+	batch toDo; //batch we're producting
+	char log[100];
+	pack done; //pack finished
+	int pack1Done=0; //number of type 1 parts done
+	int pack2Done=0; //number of type 2 parts done
+	box nextBoxesTodo; //Box we have to ask for to boxing.
+	box lastDone; //Box boxing has produced.
 	for(;;){
     	//Read from mid_batch to see what we have to produce.
     	msgQReceive(mid_batch,(char*)&toDo,sizeof(message),WAIT_FOREVER);
     	done.number=toDo.batchNumber;
-    	done.size=BOXPERPACK;
+    	done.size=BOXPERPACK; //the number of box per pack is fixed at build time
     	
     	//Tell it's job to the boxing
     	//Create all type 1 packs
@@ -52,6 +53,10 @@ int startPackaging()
     		if (plastic()==-1){
     			error("Erreur : la mise sous plastique a echouee.",'p');
     		}
+    		//Log filled up pack :
+    		sprintf(log,"Log : Pack filled up in batch %d, %d boxes of type %d",\
+    				done.number,BOXPERPACK, done.nbType1);
+    		info(log);
     		//Send it to the warehouse :
     		msgQSend(mid_packaging,(char*)&done,sizeof(done),WAIT_FOREVER,MSG_PRI_NORMAL);
     	}
@@ -73,6 +78,10 @@ int startPackaging()
     		if (plastic()==-1){
     			error("Erreur : la mise sous plastique a echouee.",'p');
     		}
+    		//Log filled up pack
+    		sprintf(log,"Log : Pack filled up in batch %d, %d boxes of type %d",\
+    				done.number,BOXPERPACK, done.nbType1);
+    		info(log);
     		//Send it to the warehouse :
     		msgQSend(mid_packaging,(char*)&done,sizeof(done),WAIT_FOREVER,MSG_PRI_NORMAL);
     	}
