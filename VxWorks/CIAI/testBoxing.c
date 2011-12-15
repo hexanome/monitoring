@@ -5,7 +5,7 @@
 #include <errnoLib.h>
 #include "usine.h"
 #include "defs.h"
-#include "mere.h"
+//#include "mere.h"
 #include "tasks.h"
 
 int testBoxing(){
@@ -13,11 +13,9 @@ int testBoxing(){
 	box toFill = {5,1,0,0,42};
 	box done;
 	int ret = 0;
-	
-	printf("Creating message queues\n");
-	mid_boxing_todo = msgQCreate(10,4,0); 
-	mid_boxing_done = msgQCreate(10,4,0); 
-	mid_received_part = msgQCreate(10,4,0); 
+	MSG_Q_ID mid_boxing_todo = msgQCreate(10,4,0); 
+	MSG_Q_ID mid_boxing_done = msgQCreate(10,4,0); 
+	MSG_Q_ID mid_received_part = msgQCreate(10,4,0); 
 	printf("Starting conditionning");
 	startBoxing();
 	
