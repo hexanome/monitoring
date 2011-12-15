@@ -1,18 +1,25 @@
 <!doctype html>
 <meta charset=utf-8>
-<title>Montitoring System</title>
-<h1>Monitoring System</h1>
+<title> Montitoring System </title>
+<h1> Monitoring System </h1>
 
 <section id=initsec>
-  <h1>Initialisez le syst&egrave;me</h1>
-  <label>Nombre de palettes de type 1:<input id=nbpart1></label><br>
-  <label>Nombre de palettes de type 2:<input id=nbpart2></label><br>
+  <h1> Initialisez le syst&egrave;me </h1>
+  <label> Nombre de palettes de type 1: <input id=nbpart1></label><br>
+  <label> Nombre de palettes de type 2: <input id=nbpart2></label><br>
   <input id=init type=button value=Initialiser>
 </section>
 <section id=stopsec>
-  <h1>Arr&ecirc;tez ou d&eacute;marrez le syst&egrave;me</h1>
+  <h1> Arr&ecirc;tez ou d&eacute;marrez le syst&egrave;me </h1>
   <input id=stop type=button value=Arr&ecirc;t>
   <input id=go type=button value=D&eacute;marrage>
+</section>
+<section id=commsec>
+  <h1> Passer une commande </h1>
+  <label> Num&eacute;ro de commande: <input id=commnum></label><br>
+  <label> Nombre de palettes de type 1: <input id=commpal1></label><br>
+  <label> Nombre de palettes de type 2: <input id=commpal2></label><br>
+  <input id=comm type=button value=Commande>
 </section>
 
 <article id=log></article>
